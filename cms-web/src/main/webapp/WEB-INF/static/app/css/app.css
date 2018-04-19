@@ -1,0 +1,22 @@
+.loading {
+    margin-left: 15px;
+}
+
+#login-box {
+    border: 1px solid #c6487e;
+}
+
+.error {
+    color: red;
+}
+
+.empty {
+    padding: 40px 0px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.required:after {
+    color: red;
+    content: "*";
+}

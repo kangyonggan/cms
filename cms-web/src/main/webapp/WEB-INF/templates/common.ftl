@@ -1,0 +1,2 @@
+<#assign ctx="${(rca.contextPath)!''}">
+

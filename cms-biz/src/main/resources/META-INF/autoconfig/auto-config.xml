@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <group>
+        <!-- redis -->
+        <property name="cms.redis.maxTotal" description="redis最大连接数" defaultValue="1000"/>
+        <property name="cms.redis.minIdle" description="redis最小等待数" defaultValue="50"/>
+        <property name="cms.redis.maxIdle" description="redis最大等待数" defaultValue="100"/>
+        <property name="cms.redis.testOnBorrow" description="redis测试支持" defaultValue="true"/>
+        <property name="cms.redis.host" description="redis主机ip" defaultValue="127.0.0.1"/>
+        <property name="cms.redis.port" description="redis主机端口" defaultValue="6379"/>
+        <property name="cms.redis.password" description="redis密码" defaultValue="123456"/>
+        <property name="cms.redis.prefix" description="redis的key的前缀" defaultValue="cms"/>
+
+        <!--jdbc-->
+        <property name="cms.jdbc.driver" description="jdbc驱动" defaultValue="com.mysql.jdbc.Driver"/>
+        <property name="cms.jdbc.url" description="jdbc地址" defaultValue="jdbc:mysql://127.0.0.1:3306/cms?useUnicode=true&amp;amp;characterEncoding=UTF-8"/>
+        <property name="cms.jdbc.username" description="jdbc用户名" defaultValue="root"/>
+        <property name="cms.jdbc.password" description="jdbc密码" defaultValue="123456"/>
+
+        <property name="cms.slow.method.time" description="慢方法时间(秒)" defaultValue="2"/>
+        <property name="cms.slow.interface.time" description="慢接口时间(秒)" defaultValue="2"/>
+    </group>
+
+    <script>
+        <generate template="applicationContext-datasource.xml" charset="UTF-8"/>
+        <generate template="applicationContext-redis.xml" charset="UTF-8"/>
+    </script>
+</config>
