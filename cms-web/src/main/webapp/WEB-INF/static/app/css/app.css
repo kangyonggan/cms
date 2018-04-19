@@ -10,13 +10,50 @@
     color: red;
 }
 
-.empty {
-    padding: 40px 0px;
-    font-size: 14px;
-    text-align: center;
-}
-
 .required:after {
     color: red;
     content: "*";
+}
+
+.radius-base {
+    border-radius: 5px;
+}
+
+.app-label {
+    height: 34px;
+    line-height: 34px;
+    text-align: left !important;
+}
+
+.app-label:after {
+    content: ':';
+}
+
+.nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-table-space {
+    clear: both;
+    padding: 10px 0;
+}
+
+.page-list .dropup button.btn {
+    color: #333 !important;
+    background-color: #fff !important;
+    border: 0px solid #ccc !important;
+    padding: 0px 0px 0px 5px !important;
+}
+
+.pagination-detail {
+    border: 1px solid #d4dfe3;
+    padding: 0 5px;
+}
+
+@media (min-width: 992px) {
+    .app-label {
+        text-align: right !important;
+    }
 }

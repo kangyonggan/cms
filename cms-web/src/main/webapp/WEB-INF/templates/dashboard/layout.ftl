@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="${ctx}/static/app/images/favicon.ico" type="image/x-icon">
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${ctx}/static/libs/bootstrap-table/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/jquery.gritter.min.css"/>
 
@@ -103,6 +104,9 @@
 <script>var ctx = '${ctx}';</script>
 <script src="${ctx}/static/ace/dist/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.bootstrap.min.js"></script>
+<script src="${ctx}/static/libs/artTemplate/template.js"></script>
+<script src="${ctx}/static/libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="${ctx}/static/libs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/jquery.gritter.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-extra.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-elements.min.js"></script>
