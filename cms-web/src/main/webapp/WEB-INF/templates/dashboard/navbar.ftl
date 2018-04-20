@@ -11,12 +11,12 @@
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="${ctx}/" class="navbar-brand">
+            <div class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
                 <@s.message "app.name"/>
                 </small>
-            </a>
+            </div>
         </div>
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">

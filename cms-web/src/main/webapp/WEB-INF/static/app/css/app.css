@@ -57,6 +57,10 @@ input[readonly].readonly {
     cursor: pointer !important;
 }
 
+tr.no-records-found td {
+    padding: 40px 0px !important;
+}
+
 @media (min-width: 992px) {
     .app-label {
         text-align: right !important;

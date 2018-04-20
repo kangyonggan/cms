@@ -2,6 +2,7 @@ package com.kangyonggan.cms.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -39,6 +40,8 @@ public class StringUtil {
      * 正则表达式：验证URL
      */
     public static final String REGEX_URL = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
+
+    private static Pattern pattern = Pattern.compile("[A-Z]([a-z\\d]+)?");
 
     /**
      * <pre>
@@ -216,10 +219,6 @@ public class StringUtil {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(String.class.getSimpleName());
-    }
-
     /**
      * 校验手机号
      *
@@ -311,11 +310,34 @@ public class StringUtil {
             if (ch == '_') {
                 sb.deleteCharAt(sb.lastIndexOf("_"));
                 isLine = true;
-            } else  {
+            } else {
                 isLine = false;
             }
         }
 
+        return sb.toString();
+    }
+
+    /**
+     * 驼峰转下划线
+     *
+     * @param data
+     * @return
+     */
+    public static String convertCamelToUnderLine(String data) {
+        if (isEmpty(data)) {
+            return data;
+        }
+
+        data = String.valueOf(data.charAt(0)).toUpperCase().concat(data.substring(1));
+
+        StringBuffer sb = new StringBuffer();
+        Matcher matcher = pattern.matcher(data);
+        while (matcher.find()) {
+            String word = matcher.group();
+            sb.append(word.toUpperCase());
+            sb.append(matcher.end() == data.length() ? "" : "_");
+        }
         return sb.toString();
     }
 }

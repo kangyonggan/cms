@@ -27,8 +27,7 @@
 <div class="form-group col-lg-4 col-md-6 col-xs-12">
     <label class="col-md-4 col-xs-12 align-right app-label nowrap control-label">${label}</label>
     <div class="col-md-8 col-xs-12">
-        <input class="form-control date-picker readonly" readonly name="${name}" data-date-format="yyyy-mm-dd"
-               placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}">
+        <input class="form-control date-picker readonly" readonly name="${name}" placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}">
     </div>
 </div>
 </#macro>
@@ -41,10 +40,13 @@
 </div>
 </#macro>
 
-<#macro inline_btn name class="btn-primary" table_id="" icon="">
+<#macro inline_btn name type="" class="btn-primary" table_id="" icon="">
 <button class="btn btn-sm ${class}"
     <#if table_id != ''>
         data-table-id="${table_id}"
+    </#if>
+    <#if type!=''>
+        data-toggle="form-${type}"
     </#if>
 >
 ${name}
