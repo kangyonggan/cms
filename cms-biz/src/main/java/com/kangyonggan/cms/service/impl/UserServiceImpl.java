@@ -1,16 +1,26 @@
 package com.kangyonggan.cms.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.kangyonggan.cms.constants.AppConstants;
+import com.kangyonggan.cms.constants.MonitorType;
 import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
+import com.kangyonggan.cms.mapper.UserMapper;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.UserService;
+import com.kangyonggan.cms.util.Digests;
+import com.kangyonggan.cms.util.Encodes;
 import com.kangyonggan.cms.util.StringUtil;
 import com.kangyonggan.extra.core.annotation.Cache;
+import com.kangyonggan.extra.core.annotation.CacheDel;
+import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +30,9 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl extends BaseService<User> implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     @Cache(key = "user:username:${username}")
@@ -62,5 +75,57 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
         PageHelper.startPage(params.getPageNum(), params.getPageSize());
         return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新用户${user.username}")
+    @CacheDel(key = {"user:username:${user.username}", "role:username:${user.username}", "menu:username:${user.username}"})
+    public void updateUserByUsername(User user) {
+        Example example = new Example(User.class);
+        example.createCriteria().andEqualTo("username", user.getUsername());
+        myMapper.updateByExampleSelective(user, example);
+    }
+
+    @Override
+    @Log
+    public boolean existsUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        return super.exists(user);
+    }
+
+    @Override
+    @Log
+    @Monitor(type = MonitorType.INSERT, description = "保存用户${user.username}")
+    public void saveUserWithDefaultRole(User user) {
+        entryptPassword(user);
+
+        myMapper.insertSelective(user);
+
+        saveUserRoles(user.getUsername(), AppConstants.DEFAULT_ROLE_CODE);
+    }
+
+    /**
+     * 批量保存用户角色
+     *
+     * @param username
+     * @param roleCodes
+     */
+    private void saveUserRoles(String username, String roleCodes) {
+        userMapper.insertUserRoles(username, Arrays.asList(roleCodes.split(",")));
+    }
+
+    /**
+     * 设定安全的密码，生成随机的salt并经过N次 sha-1 hash
+     *
+     * @param user
+     */
+    private void entryptPassword(User user) {
+        byte[] salt = Digests.generateSalt(AppConstants.SALT_SIZE);
+        user.setSalt(Encodes.encodeHex(salt));
+
+        byte[] hashPassword = Digests.sha1(user.getPassword().getBytes(), salt, AppConstants.HASH_INTERATIONS);
+        user.setPassword(Encodes.encodeHex(hashPassword));
     }
 }

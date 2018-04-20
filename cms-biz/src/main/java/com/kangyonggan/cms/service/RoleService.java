@@ -18,4 +18,11 @@ public interface RoleService {
      */
     List<Role> findRolesByUsername(String username);
 
+    /**
+     * 校验角色代码是否存在
+     *
+     * @param code
+     * @return
+     */
+    boolean existsRoleCode(String code);
 }

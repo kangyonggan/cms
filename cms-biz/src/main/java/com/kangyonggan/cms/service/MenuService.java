@@ -18,4 +18,12 @@ public interface MenuService {
      */
     List<Menu> findMenusByUsername(String username);
 
+    /**
+     * 校验菜单代码是否存在
+     *
+     * @param code
+     * @return
+     */
+    boolean existsMenuCode(String code);
+
 }

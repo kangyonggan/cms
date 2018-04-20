@@ -27,4 +27,12 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
         return roleMapper.selectRolesByUsername(username);
     }
 
+    @Override
+    @Log
+    public boolean existsRoleCode(String code) {
+        Role role = new Role();
+        role.setCode(code);
+
+        return super.exists(role);
+    }
 }

@@ -1,6 +1,6 @@
 <#--内联表单-->
 <#macro inline_form id="form" table_id="table">
-<form class="form fa-border radius-base col-xs-12">
+<form class="form fa-border radius-base col-xs-12" id="form">
     <div class="space-10"></div>
     <#nested/>
 </form>
@@ -14,7 +14,7 @@
 <#--内联文本框-->
 <#macro inline_text name label placeholder="">
 <div class="form-group col-lg-4 col-md-6 col-xs-12">
-    <label class="col-md-4 col-xs-12 align-right app-label nowrap control-label">${label}</label>
+    <label class="col-md-4 col-xs-12 align-right app-label nowrap">${label}</label>
     <div class="col-md-8 col-xs-12">
         <input class="form-control" name="${name}"
                placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}">
@@ -40,18 +40,50 @@
 </div>
 </#macro>
 
-<#macro inline_btn name type="" class="btn-primary" table_id="" icon="">
-<button class="btn btn-sm ${class}"
+<#macro inline_btn name type="" class="btn-primary" table_id="" icon="" href="" modal="">
+<a class="btn btn-sm ${class}" href="${href}"
     <#if table_id != ''>
         data-table-id="${table_id}"
     </#if>
-    <#if type!=''>
+    <#if type=='true'>
         data-toggle="form-${type}"
     </#if>
+   <#if modal!=''>
+   data-toggle="modal"
+   data-target="#myModal"
+   data-backdrop="static"
+   </#if>
 >
 ${name}
     <#if icon != ''>
         <span class="ace-icon fa ${icon} icon-on-right bigger-110"></span>
     </#if>
-</button>
+</a>
+</#macro>
+
+<#macro input name label placeholder="" readonly="" type="text">
+<#assign ph="${(placeholder=='')?string('请输入${label}', placeholder)}"/>
+<div class="form-group">
+    <div class="col-md-3 app-label">
+        <label class="required">${label}</label>
+    </div>
+    <div class="col-md-7 controls">
+        <#if type=="password">
+            <input type="password" id="${name}" name="${name}" class="form-control" placeholder="${ph}"/>
+        <#else>
+            <#if readonly=='true'>
+                <@s.formInput "${name}" 'class="form-control readonly" readonly placeholder="${ph}"'/>
+            <#else>
+                <@s.formInput "${name}" 'class="form-control" placeholder="${ph}"'/>
+            </#if>
+        </#if>
+    </div>
+</div>
+</#macro>
+
+<#macro modal_form action>
+<form class="form-horizontal" role="form" id="modal-form" method="post"
+      action="${action}">
+    <#nested/>
+</form>
 </#macro>

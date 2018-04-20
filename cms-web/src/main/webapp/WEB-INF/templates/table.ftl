@@ -41,13 +41,8 @@ ${title}
 </#macro>
 
 <#--操作按钮-->
-<#macro btn name class="" href="" target="myModal" static="true">
-<a class="btn btn-xs ${class}" href="${(href=='')?string('javascript:', href)}"
-   data-toggle="modal" data-target="#${target}"
-    <#if static=="true">
-   data-backdrop="static"
-    </#if>
->${name}</a>
+<#macro btn name href class="" target="myModal" backdrop="true">
+<a class="btn btn-xs ${class}" href="${href}" data-toggle="modal" data-target="#${target}" data-backdrop="${backdrop}">${name}</a>
 </#macro>
 
 <#--下拉按钮组-->
@@ -63,13 +58,8 @@ ${title}
 </#macro>
 
 <#--下拉按钮-->
-<#macro drop_btn name href="" target="myModal" static="true">
+<#macro drop_btn name href="">
 <li>
-    <a href="${(href=='')?string('javascript:', href)}"
-       data-toggle="modal" data-target="#${target}"
-        <#if static=="true">
-       data-backdrop="static"
-        </#if>
-    >${name}</a>
+    <a href="${(href=='')?string('javascript:', href)}">${name}</a>
 </li>
 </#macro>

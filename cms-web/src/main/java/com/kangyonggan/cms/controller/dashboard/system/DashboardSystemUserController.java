@@ -8,11 +8,13 @@ import com.kangyonggan.cms.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -49,6 +51,75 @@ public class DashboardSystemUserController extends BaseController {
         List<User> users = userService.searchUsers(params);
 
         return new Page<>(users);
+    }
+
+    /**
+     * 编辑用户
+     *
+     * @param username
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{username:[\\w]+}/edit", method = RequestMethod.GET)
+    @RequiresPermissions("SYSTEM_USER")
+    public String edit(@PathVariable("username") String username, Model model) {
+        model.addAttribute("user", userService.findUserByUsername(username));
+        return getPathFormModal();
+    }
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     * @param result
+     * @return
+     */
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @ResponseBody
+    @RequiresPermissions("SYSTEM_USER")
+    public Map<String, Object> update(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        Map<String, Object> resultMap = getResultMap();
+        if (!result.hasErrors()) {
+            userService.updateUserByUsername(user);
+        } else {
+            setResultMapFailure(resultMap);
+        }
+
+        return resultMap;
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    @RequiresPermissions("SYSTEM_USER")
+    public String create(Model model) {
+        model.addAttribute("user", new User());
+        return getPathFormModal();
+    }
+
+    /**
+     * 保存用户
+     *
+     * @param user
+     * @param result
+     * @return
+     */
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @ResponseBody
+    @RequiresPermissions("SYSTEM_USER")
+    public Map<String, Object> save(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        Map<String, Object> resultMap = getResultMap();
+        if (!result.hasErrors()) {
+            userService.saveUserWithDefaultRole(user);
+        } else {
+            setResultMapFailure(resultMap);
+        }
+
+        return resultMap;
     }
 
 }

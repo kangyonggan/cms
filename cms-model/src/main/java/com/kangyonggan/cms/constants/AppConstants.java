@@ -34,6 +34,11 @@ public interface AppConstants {
     String KEY_CAPTCHA = "key-captcha";
 
     /**
+     * 默认角色
+     */
+    String DEFAULT_ROLE_CODE = "ROLE_USER";
+
+    /**
      * 文件根路径的key
      */
     String FILE_PATH_ROOT = "file.root.path";

@@ -32,6 +32,15 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
         return recursionList(menus, wrapList, "", 0L);
     }
 
+    @Override
+    @Log
+    public boolean existsMenuCode(String code) {
+        Menu menu = new Menu();
+        menu.setCode(code);
+
+        return super.exists(menu);
+    }
+
     /**
      * 递归找出 parentCode 下边的所有子节点
      *

@@ -3,7 +3,7 @@ $(function () {
     updateState("system/user");
 
     // 表格初始化
-    $('#user-table').bootstrapTable();
+    $('#table').bootstrapTable();
 
     // 日期框
     $('.date-picker').datepicker();

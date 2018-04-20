@@ -27,4 +27,26 @@ public interface UserService {
      * @return
      */
     List<User> searchUsers(Params params);
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     */
+    void updateUserByUsername(User user);
+
+    /**
+     * 校验用户名是否存在
+     *
+     * @param username
+     * @return
+     */
+    boolean existsUsername(String username);
+
+    /**
+     * 保存用户
+     *
+     * @param user
+     */
+    void saveUserWithDefaultRole(User user);
 }

@@ -204,7 +204,8 @@ INSERT INTO tb_user
 (username, realname, password, salt)
 VALUES
   # 密码：111111
-  ('admin', '超级管理员', 'df9e06125caf2f421535bc725b9c96d329ae377b', '5cf6b1a302cabcbd');
+  ('admin', '管理员', 'df9e06125caf2f421535bc725b9c96d329ae377b', '5cf6b1a302cabcbd'),
+  ('xiaoxin', '小新', 'df9e06125caf2f421535bc725b9c96d329ae377b', '5cf6b1a302cabcbd');
 
 -- ----------------------------
 --  data for tb_role
@@ -212,7 +213,8 @@ VALUES
 INSERT INTO tb_role
 (code, name)
 VALUES
-  ('ROLE_ADMIN', '超级管理员');
+  ('ROLE_ADMIN', '超级管理员'),
+  ('ROLE_USER', '普通用户');
 
 -- ----------------------------
 --  data for tb_menu
@@ -241,7 +243,8 @@ VALUES
 -- ----------------------------
 INSERT INTO tb_user_role
 VALUES
-  ('admin', 'ROLE_ADMIN');
+  ('admin', 'ROLE_ADMIN'),
+  ('admin', 'ROLE_USER');
 
 -- ----------------------------
 --  data for tb_role_menu
@@ -250,3 +253,9 @@ INSERT INTO tb_role_menu SELECT
                            'ROLE_ADMIN',
                            code
                          FROM tb_menu;
+
+INSERT INTO tb_role_menu SELECT
+                           'ROLE_USER',
+                           code
+                         FROM tb_menu
+                         WHERE code LIKE 'USER%' OR code = 'DASHBOARD';
