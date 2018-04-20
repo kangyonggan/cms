@@ -61,6 +61,11 @@ tr.no-records-found td {
     padding: 40px 0px !important;
 }
 
+.fixed-table-body {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+}
+
 @media (min-width: 992px) {
     .app-label {
         text-align: right !important;

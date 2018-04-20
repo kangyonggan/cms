@@ -12,8 +12,8 @@
 </#macro>
 
 <#--表格的行-->
-<#macro th title field="" sortable="false" render="false" datetime="false">
-<th data-sortable="${sortable}" data-field="${field}"
+<#macro th title field="" class="" sortable="false" render="false" datetime="false">
+<th data-sortable="${sortable}" data-field="${field}" class="${class}"
     <#if render=="true">
     data-formatter="${field}Format"
     </#if>
@@ -52,7 +52,8 @@ ${title}
 
 <#--下拉按钮组-->
 <#macro drop_group>
-<button data-toggle="dropdown" class="btn btn-xs btn-inverse dropdown-toggle">
+<button data-toggle="dropdown" class="btn btn-xs btn-inverse dropdown-toggle" aria-haspopup="true"
+        aria-expanded="false">
     <span class="ace-icon fa fa-caret-down icon-only"></span>
 </button>
 

@@ -15,13 +15,13 @@
 </@c.inline_form>
 
 <@c.table id="user-table" url="${ctx}/dashboard/system/user/list">
-    <@c.th field="id" title="ID" sortable="true" />
+    <@c.th field="id" title="ID" sortable="true" class="hidden-sm hidden-xs"/>
     <@c.th field="username" title="用户名" sortable="true" />
-    <@c.th field="realname" title="真实姓名" sortable="true" />
+    <@c.th field="realname" title="真实姓名" sortable="true"/>
     <@c.th field="isDeleted" title="逻辑删除" sortable="true" render="true">
         <#include "delete.ftl"/>
     </@c.th>
-    <@c.th field="createdTime" title="创建时间" sortable="true" render="true">
+    <@c.th field="createdTime" title="创建时间" sortable="true" render="true" class="hidden-sm hidden-xs">
     {{value | datetimeFormat}}
     </@c.th>
     <@c.th title="操作" render="true">
