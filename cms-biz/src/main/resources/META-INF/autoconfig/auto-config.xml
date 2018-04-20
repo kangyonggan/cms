@@ -16,9 +16,6 @@
         <property name="cms.jdbc.url" description="jdbc地址" defaultValue="jdbc:mysql://127.0.0.1:3306/cms?useUnicode=true&amp;amp;characterEncoding=UTF-8"/>
         <property name="cms.jdbc.username" description="jdbc用户名" defaultValue="root"/>
         <property name="cms.jdbc.password" description="jdbc密码" defaultValue="123456"/>
-
-        <property name="cms.slow.method.time" description="慢方法时间(秒)" defaultValue="2"/>
-        <property name="cms.slow.interface.time" description="慢接口时间(秒)" defaultValue="2"/>
     </group>
 
     <script>

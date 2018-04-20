@@ -52,6 +52,11 @@
     padding: 0 5px;
 }
 
+input[readonly].readonly {
+    background: #fff !important;
+    cursor: pointer !important;
+}
+
 @media (min-width: 992px) {
     .app-label {
         text-align: right !important;
