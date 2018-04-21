@@ -60,16 +60,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--redis-->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-
         <!--Shiro-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -181,15 +171,6 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>com.alibaba.citrus.tool</groupId>
-                <artifactId>autoconfig-maven-plugin</artifactId>
-                <configuration>
-                    <userProperties>${antx.path}</userProperties>
-                </configuration>
-            </plugin>
-        </plugins>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -197,35 +178,4 @@
             </resource>
         </resources>
     </build>
-
-    <profiles>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <antx.path>${user.home}/antx-prod.properties</antx.path>
-            </properties>
-        </profile>
-        <profile>
-            <id>uat</id>
-            <properties>
-                <antx.path>${user.home}/antx-uat.properties</antx.path>
-            </properties>
-        </profile>
-        <profile>
-            <id>sit</id>
-            <properties>
-                <antx.path>${user.home}/antx-sit.properties</antx.path>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <antx.path>${user.home}/antx.properties</antx.path>
-            </properties>
-        </profile>
-    </profiles>
 </project>

@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
+    <!--配置数据源-->
+    <import resource="applicationContext-datasource.xml"/>
     <!--service配置-->
     <import resource="classpath*:applicationContext-service.xml"/>
     <!--Freemarker配置-->
