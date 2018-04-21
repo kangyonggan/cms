@@ -121,6 +121,16 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         updateUserByUsername(tUser);
     }
 
+    @Override
+    @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除用户${username}")
+    @CacheDel(key = {"role:username:${username}", "menu:username:${username}"})
+    public void deleteUserByUsername(String username) {
+        User user = new User();
+        user.setUsername(username);
+        myMapper.delete(user);
+    }
+
     /**
      * 批量保存用户角色
      *

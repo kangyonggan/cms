@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
+import com.kangyonggan.cms.constants.YesNo;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
@@ -120,6 +121,37 @@ public class DashboardSystemUserController extends BaseController {
         }
 
         return resultMap;
+    }
+
+    /**
+     * 删除/恢复
+     *
+     * @param username
+     * @param isDeleted
+     * @return
+     */
+    @RequestMapping(value = "{username:[\\w]+}/{isDeleted:\\bundelete\\b|\\bdelete\\b}", method = RequestMethod.GET)
+    @RequiresPermissions("SYSTEM_USER")
+    @ResponseBody
+    public Map<String, Object> delete(@PathVariable("username") String username, @PathVariable("isDeleted") String isDeleted) {
+        User user = userService.findUserByUsername(username);
+        user.setIsDeleted("delete".equals(isDeleted) ? YesNo.YES.getValue() : YesNo.NO.getValue());
+        userService.updateUserByUsername(user);
+        return super.getResultMap();
+    }
+
+    /**
+     * 物理删除
+     *
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "{username:[\\w]+}/remove", method = RequestMethod.GET)
+    @RequiresPermissions("SYSTEM_ROLE")
+    @ResponseBody
+    public Map<String, Object> remove(@PathVariable("username") String username) {
+        userService.deleteUserByUsername(username);
+        return super.getResultMap();
     }
 
 }

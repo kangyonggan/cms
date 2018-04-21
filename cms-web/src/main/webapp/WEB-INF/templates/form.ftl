@@ -1,7 +1,7 @@
 <#--表单相关组件-->
 
 <#--表单-->
-<#macro form action="" id="" action="" method="post" class="" enctype="multipart/form-data">
+<#macro form action="" id="form" action="" method="post" class="" enctype="multipart/form-data">
     <form method="${method}" class="form-horizontal ${class}" enctype="${enctype}"
           <#if action!=''>action="${action}"</#if>
           <#if id!=''>id="${id}"</#if>
@@ -21,6 +21,11 @@
         <input type="${type}" id="${name}" <#if readonly=="true">readonly</#if> name="${name}"
                value="${value}" class="form-control ${class} <#if readonly=="true">readonly</#if>" placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}"/>
     </div>
+    <#if class?contains("date-picker")>
+        <script>
+            $('.date-picker').datepicker();
+        </script>
+    </#if>
 </div>
 </#macro>
 

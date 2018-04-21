@@ -44,4 +44,23 @@ $(function () {
         $form.find("select").val("");
         return false;
     });
+
+    // 弹确认框。<@c.link type="confirm" title="" .../>
+    $(document).on("click", "[data-type='confirm']", function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $table = $(this).parents("table");
+
+        $.messager.confirm("提示", "确定" + $this.attr("title") + "吗?", function () {
+            $.get($this.attr('href')).success(function () {
+                Message.success("操作成功");
+                var formId = $table.data("form-id");
+                var params = $("#" + formId).serializeForm();
+                $table.bootstrapTable("refresh");
+            }).error(function () {
+                Message.error("网络错误，请稍后重试");
+            })
+        });
+        return false;
+    });
 });

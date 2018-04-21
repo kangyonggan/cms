@@ -56,4 +56,11 @@ public interface UserService {
      * @param user
      */
     void updateUserPassword(User user);
+
+    /**
+     * 删除用户
+     *
+     * @param username
+     */
+    void deleteUserByUsername(String username);
 }

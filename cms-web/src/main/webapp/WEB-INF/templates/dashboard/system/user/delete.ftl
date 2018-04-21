@@ -1,11 +1,7 @@
 {{if value==1}}
-<a href="javascript:" data-role="user-delete" title="恢复用户"
-   data-url="${ctx}/dashboard/system/user/{{row.username}}/undelete">
-    <span class="label label-danger arrowed-in">已删除</span>
-</a>
+<@c.link name="<span class='label label-danger arrowed-in'>已删除</span>"
+href="${baseUrl}/{{row.username}}/undelete" type="confirm" title="恢复用户"/>
 {{else}}
-<a href="javascript:" data-role="user-delete" title="删除用户"
-   data-url="${ctx}/dashboard/system/user/{{row.username}}/delete">
-    <span class="label label-success arrowed-in">未删除</span>
-</a>
+<@c.link name="<span class='label label-success arrowed-in'>未删除</span>"
+href="${baseUrl}/{{row.username}}/delete" type="confirm" title="删除用户"/>
 {{/if}}
