@@ -1,19 +1,18 @@
 <#assign ctx="${(rca.contextPath)!''}">
 <#assign baseUrl="${ctx}/dashboard/system/user"/>
 
-<@c.inline_form>
-    <@c.inline_fields>
-        <@c.inline_text name="query.username" label="用户名"/>
-        <@c.inline_text name="query.realname" label="真实姓名"/>
-        <@c.inline_date name="query.beginDate" label="创建开始日期" placeholder="请选择创建开始日期"/>
-        <@c.inline_date name="query.endDate" label="创建结束日期" placeholder="请选择创建结束日期"/>
-    </@c.inline_fields>
+<@c.form class="col-xs-12 fa-border radius-base">
+    <@c.input name="query.username" label="用户名" inline="true"/>
+    <@c.input name="query.realname" label="真实姓名" inline="true"/>
+    <@c.input name="query.beginDate" label="创建开始日期" inline="true" class="date-picker" readonly="true"/>
+    <@c.input name="query.endDate" label="创建结束日期" inline="true" class="date-picker" readonly="true"/>
 
-    <@c.inline_actions>
-        <@c.query_form_tool/>
-        <@c.inline_btn name="新增用户" class="btn-pink" href="${baseUrl}/create" modal="true"/>
-    </@c.inline_actions>
-</@c.inline_form>
+    <@c.form_actions background="false">
+        <@c.link name="查询" class="btn-purple" icon="fa-search" type="submit" table_id="table"/>
+        <@c.link name="清除" class="btn-danger" icon="fa-undo" type="reset"/>
+        <@c.link name="新增用户" class="btn-pink" href="${baseUrl}/create" modal="myModal"/>
+    </@c.form_actions>
+</@c.form>
 
 <@c.table url="${baseUrl}/list">
     <@c.th field="id" title="ID" sortable="true" class="hidden-sm hidden-xs"/>
