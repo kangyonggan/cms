@@ -6,6 +6,33 @@
 </form>
 </#macro>
 
+<#--表单-->
+<#macro form action="" id="form" action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form id="${id}" method="${method}" <#if action!=''>action="${action}"</#if> class="${class}"
+          enctype="${enctype}">
+        <#nested />
+    </form>
+</#macro>
+
+<#--表单按钮组-->
+<#macro form_actions align="center">
+<div class="clearfix form-actions">
+    <div class="align-${align}">
+        <#nested />
+    </div>
+</div>
+</#macro>
+
+<#--表单按钮-->
+<#macro form_action name id="" class="" icon="">
+<button id="${id}" class="btn ${class}" data-loading-text="正在${name}...">
+    <#if icon != ''>
+    <i class="ace-icon fa ${icon}"></i>
+    </#if>
+    ${name}
+</button>
+</#macro>
+
 <#--内联域-->
 <#macro inline_fields>
     <#nested/>
@@ -61,11 +88,11 @@ ${name}
 </a>
 </#macro>
 
-<#macro input name label placeholder="" readonly="" type="text">
+<#macro input name label placeholder="" readonly="" type="text" required="false">
 <#assign ph="${(placeholder=='')?string('请输入${label}', placeholder)}"/>
 <div class="form-group">
     <div class="col-md-3 app-label">
-        <label class="required">${label}</label>
+        <label class="<#if required=="true">required</#if>">${label}</label>
     </div>
     <div class="col-md-7 controls">
         <#if type=="password">

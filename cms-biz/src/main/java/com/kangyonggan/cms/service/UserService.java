@@ -49,4 +49,11 @@ public interface UserService {
      * @param user
      */
     void saveUserWithDefaultRole(User user);
+
+    /**
+     * 更新用户密码
+     *
+     * @param user
+     */
+    void updateUserPassword(User user);
 }

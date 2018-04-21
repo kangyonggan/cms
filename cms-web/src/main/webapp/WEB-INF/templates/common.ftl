@@ -2,6 +2,7 @@
 
 <#include "form.ftl"/>
 <#include "table.ftl"/>
+<#include "tab.ftl"/>
 
 <#--模态框底部按钮-->
 <#macro modal_form_tool>

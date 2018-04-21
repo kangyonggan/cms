@@ -106,6 +106,21 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         saveUserRoles(user.getUsername(), AppConstants.DEFAULT_ROLE_CODE);
     }
 
+    @Override
+    @Log
+    @CacheDel(key = "user:username:${user.username}")
+    @Monitor(type = MonitorType.UPDATE, description = "更新密码${user.username}")
+    public void updateUserPassword(User user) {
+        User tUser = new User();
+        tUser.setUsername(user.getUsername());
+        tUser.setPassword(user.getPassword());
+        tUser.setSalt(user.getSalt());
+
+        entryptPassword(tUser);
+
+        updateUserByUsername(tUser);
+    }
+
     /**
      * 批量保存用户角色
      *
