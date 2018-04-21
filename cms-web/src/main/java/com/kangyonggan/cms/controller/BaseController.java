@@ -4,6 +4,7 @@ import com.kangyonggan.cms.constants.AppConstants;
 import com.kangyonggan.cms.constants.Resp;
 import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
+import com.kangyonggan.cms.interceptor.RequestInterceptor;
 import com.kangyonggan.cms.util.StringUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.map.HashedMap;
@@ -30,8 +31,6 @@ public class BaseController {
     private static final String DETAIL_MODAL = "/detail-modal";
     private static final String TABLE_TR = "/table-tr";
 
-    private static ThreadLocal<HttpServletRequest> currentRequest = new ThreadLocal<>();
-
     public BaseController() {
         String className = getClass().getSimpleName();
         String[] arr = StringUtil.camelToArray(className);
@@ -47,11 +46,6 @@ public class BaseController {
         if (!pathRoot.startsWith(DASHBOARD)) {
             pathRoot = "web/" + pathRoot;
         }
-    }
-
-    @ModelAttribute
-    public void init(HttpServletRequest request) {
-        currentRequest.set(request);
     }
 
     /**
@@ -95,7 +89,7 @@ public class BaseController {
     protected Query getQuery(String name) {
         Query query = new Query();
         name += ".";
-        Map<String, String[]> parameterMap = getRequest().getParameterMap();
+        Map<String, String[]> parameterMap = RequestInterceptor.getRequest().getParameterMap();
         for (String key : parameterMap.keySet()) {
             if (key.startsWith(name)) {
                 String[] value = parameterMap.get(key);
@@ -117,7 +111,7 @@ public class BaseController {
      * @return
      */
     protected String getStringParam(String name) {
-        return getRequest().getParameter(name);
+        return RequestInterceptor.getRequest().getParameter(name);
     }
 
     /**
@@ -128,7 +122,7 @@ public class BaseController {
      * @return
      */
     protected String getStringParam(String name, String defaultValue) {
-        String param = getRequest().getParameter(name);
+        String param = RequestInterceptor.getRequest().getParameter(name);
         return param == null ? defaultValue : param;
     }
 
@@ -139,7 +133,7 @@ public class BaseController {
      * @return
      */
     protected int getIntegerParam(String name) {
-        return Integer.parseInt(getRequest().getParameter(name));
+        return Integer.parseInt(RequestInterceptor.getRequest().getParameter(name));
     }
 
     /**
@@ -151,19 +145,10 @@ public class BaseController {
      */
     protected int getIntegerParam(String name, int defaultValue) {
         try {
-            return Integer.parseInt(getRequest().getParameter(name));
+            return Integer.parseInt(RequestInterceptor.getRequest().getParameter(name));
         } catch (Exception e) {
             return defaultValue;
         }
-    }
-
-    /**
-     * 获取请求对象
-     *
-     * @return
-     */
-    protected HttpServletRequest getRequest() {
-        return currentRequest.get();
     }
 
     protected String getPathRoot() {

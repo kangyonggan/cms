@@ -74,4 +74,8 @@
     <!-- 定义无需Controller的url<->view直接映射 -->
     <mvc:view-controller path="/404" view-name="/404"/>
 
+    <!--请求拦截器-->
+    <mvc:interceptors>
+        <bean class="com.kangyonggan.cms.interceptor.RequestInterceptor"/>
+    </mvc:interceptors>
 </beans>
