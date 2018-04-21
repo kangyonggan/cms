@@ -25,4 +25,12 @@ public interface RoleService {
      * @return
      */
     boolean existsRoleCode(String code);
+
+    /**
+     * 查找所有角色
+     *
+     * @return
+     */
+    List<Role> findAllRoles();
+
 }

@@ -1,7 +1,7 @@
 $(function () {
-    var $form = $('#modal-form');
-    var $btn = $("#submit");
-    var $modal = $form.parents('.modal');
+    var $modal = $('.modal');
+    var $form = $modal.find("form");
+    var $btn = $modal.find("button[data-type=submit]");
 
     $form.validate({
         rules: {

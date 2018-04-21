@@ -63,4 +63,12 @@ public interface UserService {
      * @param username
      */
     void deleteUserByUsername(String username);
+
+    /**
+     * 更新用户角色
+     *
+     * @param username
+     * @param roles
+     */
+    void updateUserRoles(String username, String roles);
 }

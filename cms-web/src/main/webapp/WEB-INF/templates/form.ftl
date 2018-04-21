@@ -45,19 +45,3 @@
 </#if>
 </#macro>
 
-<#--表单按钮-->
-<#macro button name id="" class="" icon="" dismiss="false" type="">
-<button id="${id}" class="btn ${class}" data-loading-text="正在${name}..."
-    <#if dismiss=="true">
-         data-dismiss="modal"
-    </#if>
-    <#if type!=''>
-        data-type="${type}"
-    </#if>
->
-    <#if icon != ''>
-    <i class="ace-icon fa ${icon}"></i>
-    </#if>
-    ${name}
-</button>
-</#macro>

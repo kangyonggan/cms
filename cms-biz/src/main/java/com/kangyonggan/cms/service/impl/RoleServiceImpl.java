@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.service.impl;
 
+import com.kangyonggan.cms.constants.YesNo;
 import com.kangyonggan.cms.mapper.RoleMapper;
 import com.kangyonggan.cms.model.Role;
 import com.kangyonggan.cms.service.RoleService;
@@ -34,5 +35,15 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
         role.setCode(code);
 
         return super.exists(role);
+    }
+
+    @Override
+    @Log
+    @Cache(key = "role:all")
+    public List<Role> findAllRoles() {
+        Role role = new Role();
+        role.setIsDeleted(YesNo.NO.getValue());
+
+        return myMapper.select(role);
     }
 }

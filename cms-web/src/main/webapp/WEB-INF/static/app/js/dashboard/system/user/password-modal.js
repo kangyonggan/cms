@@ -1,6 +1,7 @@
 $(function () {
-    var $form = $('#form');
-    var $btn = $form.find("button");
+    var $modal = $('.modal');
+    var $form = $modal.find("form");
+    var $btn = $modal.find("button[data-type=submit]");
 
     $form.validate({
         rules: {
@@ -11,10 +12,6 @@ $(function () {
             rePassword: {
                 required: true,
                 equalTo: "#password"
-            },
-            realname: {
-                isRealName: true,
-                required: true
             }
         },
         submitHandler: function (form, event) {
@@ -24,10 +21,8 @@ $(function () {
                 dataType: 'json',
                 success: function (response) {
                     if (response.respCo == '0000') {
-                        Message.success("修改成功");
-                        var user = response.user;
-                        $("#navFullname").html(user.realname);
-                        $form.find("input[type=password]").val("");
+                        $modal.modal('hide');
+                        Message.success(response.respMsg);
                     } else {
                         Message.error(response.respMsg);
                     }
@@ -46,4 +41,3 @@ $(function () {
         errorClass: "error"
     });
 });
-

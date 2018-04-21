@@ -5,6 +5,7 @@ import com.kangyonggan.cms.constants.AppConstants;
 import com.kangyonggan.cms.constants.MonitorType;
 import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
+import com.kangyonggan.cms.mapper.RoleMapper;
 import com.kangyonggan.cms.mapper.UserMapper;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.UserService;
@@ -33,6 +34,9 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
     @Cache(key = "user:username:${username}")
@@ -129,6 +133,18 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         User user = new User();
         user.setUsername(username);
         myMapper.delete(user);
+    }
+
+    @Override
+    @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新用户角色${username}, ${roleCodes}")
+    @CacheDel(key = {"role:username:${username}", "menu:username:${username}"})
+    public void updateUserRoles(String username, String roleCodes) {
+        roleMapper.deleteAllRolesByUsername(username);
+
+        if (StringUtils.isNotEmpty(roleCodes)) {
+            saveUserRoles(username, roleCodes);
+        }
     }
 
     /**
