@@ -42,6 +42,7 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_USER")
     public String index() {
+        int a = 1 / 0;
         return getPathList();
     }
 

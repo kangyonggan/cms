@@ -72,7 +72,9 @@
     <mvc:resources mapping="/upload/**" location="/WEB-INF/upload/" cache-period="31556926"/>
 
     <!-- 定义无需Controller的url<->view直接映射 -->
-    <mvc:view-controller path="/404" view-name="/404"/>
+    <!--<mvc:view-controller path="/error/403" view-name="/error/403"/>-->
+    <!--<mvc:view-controller path="/error/404" view-name="/error/404"/>-->
+    <!--<mvc:view-controller path="/error/500" view-name="/error/500"/>-->
 
     <!--请求拦截器-->
     <mvc:interceptors>

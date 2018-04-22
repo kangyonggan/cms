@@ -14,7 +14,7 @@ $(function () {
 
     // 监听异步加载失败事件
     $ajaxContent.on("ajaxloaderror", function (e, data) {
-        window.location.href = ctx + '/404';
+        // window.location.href = ctx + '/500';
     });
 
     // modal form 提交

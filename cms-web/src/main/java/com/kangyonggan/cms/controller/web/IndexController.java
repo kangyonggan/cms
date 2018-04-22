@@ -20,7 +20,7 @@ public class IndexController extends BaseController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
-        return "redirect:/auth";
+        return getPathIndex();
     }
 
 }
