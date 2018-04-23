@@ -5,33 +5,25 @@ $(function () {
 
     $form.validate({
         rules: {
-            username: {
+            code: {
                 required: true,
-                isUsername: true,
+                isRoleCode: true,
                 remote: {
-                    url: ctx + "/validate/user",
+                    url: ctx + "/validate/role",
                     type: 'post',
                     data: {
-                        'username': function () {
-                            return $('#username').val()
+                        'code': function () {
+                            return $('#code').val()
                         },
-                        'oldUsername': function () {
-                            return $('#old-username').val();
+                        'oldCode': function () {
+                            return $('#old-code').val();
                         }
                     }
                 }
             },
-            realname: {
+            name: {
                 required: true,
                 rangelength: [1, 32]
-            },
-            password: {
-                required: true,
-                isPassword: true
-            },
-            rePassword: {
-                required: true,
-                equalTo: "#password"
             }
         },
         submitHandler: function (form, event) {

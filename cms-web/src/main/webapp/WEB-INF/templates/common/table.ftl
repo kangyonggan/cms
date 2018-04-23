@@ -21,18 +21,20 @@
          data-sortable="${sortable}"
     </#if>
     <#if render=="true">
-    data-formatter="${field}Format"
+        <#--<#assign dataFormatter='<@random property="xxx"/>'/>-->
+        <#local dataFormatter=random/>
+    data-formatter="${dataFormatter?string}"
     </#if>
 >
 ${title}
     <#if render=="true">
-        <div id="${field}Template" class="hidden">
+        <div id="${dataFormatter}" class="hidden">
             <#nested/>
         </div>
         <script>
-            function ${field}Format(value, row, index) {
+            function ${dataFormatter}(value, row, index) {
                 var data = {"value": value, "row": row, "index": index};
-                return template('${field}Template', data);
+                return template('${dataFormatter}', data);
             }
         </script>
     </#if>

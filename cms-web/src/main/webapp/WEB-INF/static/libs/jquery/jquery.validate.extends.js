@@ -46,11 +46,6 @@ $.extend($.validator.addMethod("isCaptcha", function (value) {
     return str.test(value);
 }, "请输入4位数字的验证码"));
 
-$.extend($.validator.addMethod("isRealName", function (value) {
-    var str = /^[\u4E00-\u9FA5]{2,12}$/;
-    return str.test(value);
-}, "请输入2至12个汉字"));
-
 $.extend($.validator.addMethod("isIdNo", function (value) {
     var str = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
     return str.test(value);
@@ -71,11 +66,6 @@ $.extend($.validator.addMethod("isMobile", function(value, element) {
     var mobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
     return this.optional(element) || (length == 11 && mobile.test(value));
 }, "请正确填写您的手机号码"));
-
-$.extend($.validator.addMethod("isFreemarker", function(value, element) {
-    var str = /\.ftl$/;
-    return str.test(value);
-}, "请以.ftl结尾"));
 
 $.extend($.validator.addMethod("isMenuUrl", function (value) {
     var str = /^[a-z\/]{1,32}$/;

@@ -7,11 +7,6 @@ package com.kangyonggan.cms.constants;
 public interface AppConstants {
 
     /**
-     * 分页大小
-     */
-    int PAGE_SIZE = 10;
-
-    /**
      * 响应码的key
      */
     String RESP_CO = "respCo";

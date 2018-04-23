@@ -49,6 +49,8 @@
 <body class="skin-2">
 <#include "navbar.ftl"/>
 
+<#assign aaa=(random())/>
+
 <div class="main-container" id="main-container">
 
 <#include "sidebar.ftl"/>
@@ -119,15 +121,5 @@
 <script src="${ctx}/static/app/js/component.js"></script>
 <script src="${ctx}/static/app/js/app.js"></script>
 <@block name="app-script"/>
-<script>
-    $(function() {
-        console.log("xxx");
-        $.get("http://localhost:8888/dashboard/system/user/list", function(data, status) {
-            console.log(data);
-            console.log(status);
-        });
-        console.log("xxx");
-    });
-</script>
 </body>
 </html>

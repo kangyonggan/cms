@@ -4,6 +4,7 @@
 <#include "table.ftl"/>
 <#include "tab.ftl"/>
 <#include "component.ftl"/>
+<#include "functions.ftl"/>
 
 <#macro datetime>
 {{value | datetimeFormat}}

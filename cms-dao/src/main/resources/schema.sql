@@ -222,7 +222,7 @@ CREATE TABLE tb_preference
 )
   COMMENT '偏好表';
 CREATE INDEX ix_username
-  ON tb_preference (username),
+  ON tb_preference (username);
 CREATE UNIQUE INDEX username_type_name_UNIQUE
   ON tb_preference (username, type, name);
 
@@ -259,8 +259,7 @@ VALUES
   ('SYSTEM_USER', '用户管理', 'SYSTEM', 'system/user', 0, ''),
   ('SYSTEM_ROLE', '角色管理', 'SYSTEM', 'system/role', 1, ''),
   ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, ''),
-  ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 3, ''),
-  ('SYSTEM_SQL', '执行脚本', 'SYSTEM', 'system/sql', 4, ''),
+  ('SYSTEM_SQL', '执行脚本', 'SYSTEM', 'system/sql', 3, ''),
 
   ('MONITOR', '监控', 'DASHBOARD', 'monitor', 2, 'menu-icon fa fa-laptop'),
   ('MONITOR_LOGIN', '登录日志', 'MONITOR', 'monitor/login', 0, ''),
