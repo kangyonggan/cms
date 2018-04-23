@@ -36,11 +36,6 @@ public class PropertiesUtil {
             InputStreamReader reader = new InputStreamReader(in, "UTF-8");
             props.load(reader);
 
-            String propertiesPath = props.getProperty("properties.path");
-            log.info("本地配置文件路径:{}", propertiesPath);
-
-            isr = new InputStreamReader(new FileInputStream(propertiesPath), "GBK");
-            props.load(isr);
             appName = props.getProperty("app.shortname");
             log.info("本地配置文件加载完毕");
         } catch (IOException e) {

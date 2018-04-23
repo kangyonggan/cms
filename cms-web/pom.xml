@@ -18,13 +18,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.alibaba.citrus.tool</groupId>
-                <artifactId>autoconfig-maven-plugin</artifactId>
-                <configuration>
-                    <userProperties>${antx.path}</userProperties>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
