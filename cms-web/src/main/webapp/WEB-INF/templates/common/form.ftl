@@ -14,7 +14,7 @@
 <#--输入框-->
 <#macro input name label value="" inline="false" class="" placeholder="" readonly="false" type="text" required="false">
 <div class="form-group <#if inline=='true'>col-lg-4 col-md-6 col-xs-12</#if>">
-    <div class="col-md-3 app-label nowrap <#if inline=='true'>col-xs-12</#if>">
+    <div class="app-label nowrap <#if inline=='true'>col-md-5 col-xs-12<#else>col-md-3</#if>">
         <label class="<#if required=="true">required</#if>">${label}</label>
     </div>
     <div class="col-md-7 controls <#if inline=='true'>col-xs-12</#if>">
