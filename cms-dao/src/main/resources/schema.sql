@@ -195,6 +195,37 @@ CREATE INDEX ix_app
 CREATE INDEX ix_type
   ON tb_monitor (type);
 
+-- ----------------------------
+--  Table structure for tb_preference
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_preference;
+
+CREATE TABLE tb_preference
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  username     VARCHAR(32)                           NOT NULL
+  COMMENT '用户名',
+  type         VARCHAR(20)                           NOT NULL
+  COMMENT '偏好类型',
+  name         VARCHAR(64)                           NOT NULL
+  COMMENT '偏好名称',
+  value        VARCHAR(256)                          NOT NULL
+  COMMENT '偏好的值',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '偏好表';
+CREATE INDEX ix_username
+  ON tb_preference (username),
+CREATE UNIQUE INDEX username_type_name_UNIQUE
+  ON tb_preference (username, type, name);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -231,7 +262,7 @@ VALUES
   ('SYSTEM_CACHE', '缓存管理', 'SYSTEM', 'system/cache', 3, ''),
   ('SYSTEM_SQL', '执行脚本', 'SYSTEM', 'system/sql', 4, ''),
 
-  ('MONITOR', '监控', 'DASHBOARD', 'monitor',2, 'menu-icon fa fa-laptop'),
+  ('MONITOR', '监控', 'DASHBOARD', 'monitor', 2, 'menu-icon fa fa-laptop'),
   ('MONITOR_LOGIN', '登录日志', 'MONITOR', 'monitor/login', 0, ''),
   ('MONITOR_OPERATE', '操作日志', 'MONITOR', 'monitor/operate', 1, ''),
 

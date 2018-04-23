@@ -1,4 +1,11 @@
-<div id="navbar" class="navbar navbar-default">
+<#if _preferences??>
+    <#list _preferences as preference>
+        <#if preference.name=="fixed-navbar" && preference.value=="1">
+            <#assign navbarFixedTopClass="navbar-fixed-top"/>
+        </#if>
+    </#list>
+</#if>
+<div id="navbar" class="navbar navbar-default ${navbarFixedTopClass!''}">
     <div class="navbar-container" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
             <span class="sr-only">Toggle sidebar</span>
