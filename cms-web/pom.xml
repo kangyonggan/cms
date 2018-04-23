@@ -31,6 +31,13 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>env/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/env/${env.active}</directory>
+                <filtering>true</filtering>
             </resource>
         </resources>
     </build>
@@ -67,19 +74,22 @@
         <profile>
             <id>prod</id>
             <properties>
-                <antx.path>${user.home}/antx-prod.properties</antx.path>
+                <cms.log4j2.home>${user.home}/logs</cms.log4j2.home>
+                <env.active>prod</env.active>
             </properties>
         </profile>
         <profile>
             <id>uat</id>
             <properties>
-                <antx.path>${user.home}/antx-uat.properties</antx.path>
+                <cms.log4j2.home>${user.home}/logs</cms.log4j2.home>
+                <env.active>uat</env.active>
             </properties>
         </profile>
         <profile>
             <id>sit</id>
             <properties>
-                <antx.path>${user.home}/antx-sit.properties</antx.path>
+                <cms.log4j2.home>${user.home}/logs</cms.log4j2.home>
+                <env.active>sit</env.active>
             </properties>
         </profile>
 
@@ -89,7 +99,8 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <antx.path>${user.home}/antx.properties</antx.path>
+                <cms.log4j2.home>${user.home}/logs</cms.log4j2.home>
+                <env.active>dev</env.active>
             </properties>
         </profile>
     </profiles>

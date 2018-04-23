@@ -22,6 +22,17 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>*.sql</exclude>
+                    <exclude>generatorConfig.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
@@ -66,4 +77,5 @@
         </dependency>
 
     </dependencies>
+
 </project>

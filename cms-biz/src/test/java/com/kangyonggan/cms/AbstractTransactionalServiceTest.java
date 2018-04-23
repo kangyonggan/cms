@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @date 2016/11/30
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/test-core.xml"})
+@ContextConfiguration(locations = {"classpath:/test-service.xml"})
 public abstract class AbstractTransactionalServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 }
