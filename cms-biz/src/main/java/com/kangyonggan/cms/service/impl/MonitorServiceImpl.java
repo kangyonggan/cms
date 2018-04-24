@@ -53,12 +53,12 @@ public class MonitorServiceImpl extends BaseService<Monitor> implements MonitorS
 
         String app = query.getString("app");
         if (StringUtils.isNotEmpty(app)) {
-            criteria.andLike("app", app);
+            criteria.andEqualTo("app", app);
         }
 
         String type = query.getString("type");
         if (StringUtils.isNotEmpty(type)) {
-            criteria.andLike("type", type);
+            criteria.andEqualTo("type", type);
         }
 
         String hasReturnValue = query.getString("hasReturnValue");
