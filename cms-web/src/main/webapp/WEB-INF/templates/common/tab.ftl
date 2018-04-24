@@ -15,9 +15,9 @@
 </#macro>
 
 <#--tab按钮-->
-<#macro tab ref name active="false" icon="">
-    <li class="${(active=="true")?string('active', '')}">
-        <a data-toggle="tab" href="#${ref}" aria-expanded="${active}">
+<#macro tab ref name active=false icon="">
+    <li class="${active?string('active', '')}">
+        <a data-toggle="tab" href="#${ref}" aria-expanded="${active?string}">
             <#if icon!="">
             <i class="green ace-icon fa ${icon} bigger-125"></i>
             </#if>
@@ -34,8 +34,8 @@
 </#macro>
 
 <#--tab内容-->
-<#macro tab_content id active="false">
-    <div id="${id}" class="tab-pane ${(active=="true")?string('active', '')}">
+<#macro tab_content id active=false>
+    <div id="${id}" class="tab-pane ${active?string('active', '')}">
         <div class="space-6"></div>
         <#nested/>
     </div>

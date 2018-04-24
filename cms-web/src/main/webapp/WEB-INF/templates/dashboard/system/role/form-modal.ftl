@@ -5,14 +5,14 @@
 <@override name="modal-body">
     <@c.form id="modal-form" action="${ctx}/dashboard/system/role/${isEdit?string('update', 'save')}">
     <input type="hidden" id="old-code" value="${role.code!''}"/>
-        <@c.input name="code" value="${role.code!''}" label="角色代码" readonly="${isEdit?string('true', 'false')}" required="${isEdit?string('false', 'true')}" placeholder="格式参考:ROLE_ADMIN"/>
-        <@c.input name="name" value="${role.name!''}" label="角色名称" required="true"/>
+        <@c.input name="code" value="${role.code!''}" label="角色代码" readonly=isEdit required=!isEdit placeholder="格式参考:ROLE_ADMIN"/>
+        <@c.input name="name" value="${role.name!''}" label="角色名称" required=true/>
 
     </@c.form>
 </@override>
 
 <@override name="modal-footer">
-    <@c.button name="取消" icon="fa-times" dismiss="true"/>
+    <@c.button name="取消" icon="fa-times" dismiss=true/>
     <@c.button name="提交" type="submit" class="btn-success" icon="fa-check"/>
 <script src="${ctx}/static/app/js/dashboard/system/role/form-modal.js"></script>
 </@override>

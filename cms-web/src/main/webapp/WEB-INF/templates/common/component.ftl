@@ -8,8 +8,8 @@
 </#macro>
 
 <#--超链接-->
-<#macro link name id="" href="javascript:" icon="" class="" drop="false" type="" table_id="" modal="" backdrop="static" type="" title="">
-<#if drop=="true">
+<#macro link name id="" href="javascript:" icon="" class="" drop=false type="" table_id="" modal="" backdrop="static" type="" title="">
+<#if drop>
 <li>
 </#if>
 <a href="${href}" <#if id!=''>id="${id}"</#if> class="${class}" title="${title}"
@@ -30,7 +30,7 @@
     </#if>
     ${name}
 </a>
-<#if drop=="true">
+<#if drop>
 </li>
 </#if>
 </#macro>
@@ -48,12 +48,12 @@
 </#macro>
 
 <#--按钮-->
-<#macro button name id="" class="" icon="" dismiss="false" type="">
+<#macro button name id="" class="" icon="" dismiss=false type="">
 <button class="btn ${class}" data-loading-text="正在${name}..."
     <#if id!="">
         id="${id}"
     </#if>
-    <#if dismiss=="true">
+    <#if dismiss>
          data-dismiss="modal"
     </#if>
     <#if type!=''>

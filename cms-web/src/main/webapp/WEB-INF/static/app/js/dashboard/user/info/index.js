@@ -13,7 +13,7 @@ $(function () {
                 equalTo: "#password"
             },
             realname: {
-                isRealName: true,
+                rangelength: [1, 32],
                 required: true
             }
         },

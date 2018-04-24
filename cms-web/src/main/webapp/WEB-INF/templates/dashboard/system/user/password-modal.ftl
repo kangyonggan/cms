@@ -3,16 +3,16 @@
 
 <@override name="modal-body">
     <@c.form id="modal-form" action="${ctx}/dashboard/system/user/password">
-        <@c.input name="username" value="${user.username!''}" label="用户名" readonly="true"/>
-        <@c.input name="realname" value="${user.realname!''}" label="真实姓名" readonly="true"/>
+        <@c.input name="username" value="${user.username!''}" label="用户名" readonly=true/>
+        <@c.input name="realname" value="${user.realname!''}" label="真实姓名" readonly=true/>
 
-        <@c.input name="password" type="password" label="新密码" required="true"/>
-        <@c.input name="rePassword" type="password" label="确认密码" required="true"/>
+        <@c.input name="password" type="password" label="新密码" required=true/>
+        <@c.input name="rePassword" type="password" label="确认密码" required=true/>
     </@c.form>
 </@override>
 
 <@override name="modal-footer">
-    <@c.button name="取消" icon="fa-times" dismiss="true"/>
+    <@c.button name="取消" icon="fa-times" dismiss=true/>
     <@c.button name="提交" type="submit" class="btn-success" icon="fa-check"/>
 <script src="${ctx}/static/app/js/dashboard/system/user/password-modal.js"></script>
 </@override>

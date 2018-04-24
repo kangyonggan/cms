@@ -17,7 +17,7 @@
 </@override>
 
 <@override name="modal-footer">
-    <@c.button name="取消" icon="fa-times" dismiss="true"/>
+    <@c.button name="取消" icon="fa-times" dismiss=true/>
     <@c.button name="提交" type="submit" class="btn-success" icon="fa-check"/>
 <script src="${ctx}/static/app/js/dashboard/system/user/roles-modal.js"></script>
 </@override>
