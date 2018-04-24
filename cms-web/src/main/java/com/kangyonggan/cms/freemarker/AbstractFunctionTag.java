@@ -15,19 +15,19 @@ public class AbstractFunctionTag implements TemplateMethodModelEx {
     /**
      * 参数一：方法名
      *
-     * @param args
+     * @param arguments
      * @return
      * @throws TemplateModelException
      */
     @Override
-    public Object exec(List args) throws TemplateModelException {
-        if (args.isEmpty()) {
+    public Object exec(List arguments) throws TemplateModelException {
+        if (arguments.isEmpty()) {
             return null;
         }
 
         try {
-            Method method = getClass().getDeclaredMethod(args.get(0).toString(), new Class[]{List.class});
-            return method.invoke(this, new Object[]{args});
+            Method method = getClass().getDeclaredMethod(arguments.get(0).toString(), new Class[]{List.class});
+            return method.invoke(this, new Object[]{arguments});
         } catch (Exception e) {
             throw new TemplateModelException(e);
         }

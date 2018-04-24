@@ -16,10 +16,10 @@ public class AppTag extends AbstractFunctionTag {
     /**
      * 获取UUID
      *
-     * @param args
+     * @param arguments
      * @return
      */
-    public String uuid(List args) {
+    public String uuid(List arguments) {
         return PropertiesUtil.getAppName() + UUID.randomUUID().toString().replaceAll("-", "");
     }
 
