@@ -7,9 +7,9 @@ $(function () {
         rules: {
             code: {
                 required: true,
-                isRoleCode: true,
+                isMenuCode: true,
                 remote: {
-                    url: ctx + "/validate/role",
+                    url: "/validate/menu",
                     type: 'post',
                     data: {
                         'code': function () {
@@ -24,16 +24,26 @@ $(function () {
             name: {
                 required: true,
                 rangelength: [1, 32]
+            },
+            url: {
+                required: true,
+                isMenuUrl: true
+            },
+            sort: {
+                required: true,
+                range: [0, 100]
             }
         },
         submitHandler: function (form, event) {
             event.preventDefault();
             $btn.button('loading');
+
             formSubmit($(form), $btn, function () {
+                window.location.hash = "system/menu?r=" + Math.random();
                 $modal.modal('hide');
-                var params = $("#form").serializeForm();
-                $('#table').bootstrapTable("refresh", {query: params});
             });
         }
     });
+
+
 });

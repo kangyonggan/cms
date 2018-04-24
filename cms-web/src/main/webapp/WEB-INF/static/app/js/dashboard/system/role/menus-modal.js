@@ -38,7 +38,7 @@ $(function () {
             $("#menus").val(arr);
 
             $btn.button('loading');
-            formSubmit(form, $btn, function () {
+            formSubmit($(form), $btn, function () {
                 $modal.modal('hide');
             });
         }

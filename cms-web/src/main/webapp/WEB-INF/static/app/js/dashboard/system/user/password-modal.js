@@ -17,7 +17,7 @@ $(function () {
         submitHandler: function (form, event) {
             event.preventDefault();
             $btn.button('loading');
-            formSubmit(form, $btn, function () {
+            formSubmit($(form), $btn, function () {
                 $modal.modal('hide');
             });
         }

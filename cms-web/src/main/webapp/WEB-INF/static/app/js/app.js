@@ -68,12 +68,12 @@ $(function () {
 /**
  * 提交表单
  *
- * @param form 表单
+ * @param $form 表单
  * @param $btn 提交按钮
  * @param callback 回调
  */
-function formSubmit(form, $btn, callback) {
-    $(form).ajaxSubmit({
+function formSubmit($form, $btn, callback) {
+    $form.ajaxSubmit({
         dataType: 'json',
         success: function (response) {
             if (response.respCo == '0000') {
@@ -82,11 +82,15 @@ function formSubmit(form, $btn, callback) {
             } else {
                 Message.error(response.respMsg);
             }
-            $btn.button('reset');
+            if ($btn) {
+                $btn.button('reset');
+            }
         },
         error: function () {
             Message.error("服务器内部错误，请稍后再试。");
-            $btn.button('reset');
+            if ($btn) {
+                $btn.button('reset');
+            }
         }
     });
 }

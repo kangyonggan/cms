@@ -1,10 +1,13 @@
 package com.kangyonggan.cms.service.impl;
 
+import com.kangyonggan.cms.constants.MonitorType;
 import com.kangyonggan.cms.mapper.MenuMapper;
 import com.kangyonggan.cms.model.Menu;
 import com.kangyonggan.cms.service.MenuService;
 import com.kangyonggan.extra.core.annotation.Cache;
+import com.kangyonggan.extra.core.annotation.CacheDel;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +63,46 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
         List<Menu> wrapList = new ArrayList();
 
         return recursionTreeList(menus, wrapList, "", 0L);
+    }
+
+    @Override
+    @Log
+    public Menu findMenuByCode(String code) {
+        Menu menu = new Menu();
+        menu.setCode(code);
+
+        return myMapper.selectOne(menu);
+    }
+
+    @Override
+    @Log
+    @CacheDel(key = "menu:all")
+    @Monitor(type = MonitorType.INSERT, description = "保存菜单${menu.name}")
+    public void saveMenu(Menu menu) {
+        myMapper.insertSelective(menu);
+    }
+
+    @Override
+    @Log
+    @Cache(key = "menu:id:${id}")
+    public Menu findMenuById(Long id) {
+        return myMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新菜单${menu.code}")
+    @CacheDel(key = {"menu:id:${menu.id}", "menu:all", "menu:username*", "menu:role*"})
+    public void updateMenu(Menu menu) {
+        myMapper.updateByPrimaryKeySelective(menu);
+    }
+
+    @Override
+    @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除菜单id=${menu.id}")
+    @CacheDel(key = {"menu:id:${menu.id}", "menu:all", "menu:username*", "menu:role*"})
+    public void deleteMenu(Menu menu) {
+        myMapper.deleteByPrimaryKey(menu);
     }
 
     /**

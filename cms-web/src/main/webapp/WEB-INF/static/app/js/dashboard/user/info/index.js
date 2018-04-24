@@ -20,7 +20,7 @@ $(function () {
         submitHandler: function (form, event) {
             event.preventDefault();
             $btn.button('loading');
-            formSubmit(form, $btn, function (response) {
+            formSubmit($(form), $btn, function (response) {
                 var user = response.user;
                 $("#navFullname").html(user.realname);
                 $form.find("input[type=password]").val("");

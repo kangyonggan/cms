@@ -41,4 +41,40 @@ public interface MenuService {
      */
     List<Menu> findAllMenus();
 
+    /**
+     * 查找菜单
+     *
+     * @param pcode
+     * @return
+     */
+    Menu findMenuByCode(String pcode);
+
+    /**
+     * 保存菜单
+     *
+     * @param menu
+     */
+    void saveMenu(Menu menu);
+
+    /**
+     * 查找菜单
+     *
+     * @param id
+     * @return
+     */
+    Menu findMenuById(Long id);
+
+    /**
+     * 更新菜单
+     *
+     * @param menu
+     */
+    void updateMenu(Menu menu);
+
+    /**
+     * 删除菜单
+     *
+     * @param menu
+     */
+    void deleteMenu(Menu menu);
 }
