@@ -3,9 +3,7 @@
 
 <@c.form class="col-xs-12 fa-border radius-base">
     <@c.input name="query.username" label="用户名" inline=true/>
-    <@c.select name="query.type" label="偏好类型" inline=true>
-
-    </@c.select>
+    <@c.select name="query.type" label="偏好类型" inline=true map=enum('map', 'preferenceType')/>
     <@c.input name="query.name" label="偏好名称" inline=true/>
     <@c.form_actions background=false>
         <@c.link name="查询" class="btn btn-sm btn-purple" icon="fa-search" type="submit" table_id="table"/>

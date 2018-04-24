@@ -49,7 +49,7 @@
                 <entry key="override" value-ref="overrideDirective"/>
                 <entry key="super" value-ref="superDirective"/>
                 <entry key="app" value-ref="appTag"/>
-                <entry key="dict" value-ref="dictTag"/>
+                <entry key="enum" value-ref="enumTag"/>
                 <entry key="shiro" value-ref="shiroTags"/>
             </map>
         </property>

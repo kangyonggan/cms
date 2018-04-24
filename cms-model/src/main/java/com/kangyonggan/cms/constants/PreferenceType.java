@@ -1,11 +1,13 @@
 package com.kangyonggan.cms.constants;
 
+import com.kangyonggan.cms.annotation.Enum;
 import lombok.Getter;
 
 /**
  * @author kangyonggan
  * @date 4/23/18
  */
+@Enum(code = "type")
 public enum PreferenceType {
 
     ACE("ACE", "Ace Admin的偏好");
