@@ -4,7 +4,8 @@
 <#macro table url id="table" pagination="true" undefined_text="" form_id="form">
 <div class="form-table-space"></div>
 <table id="${id}" data-toggle="table" data-url="${url}" data-pagination="${pagination}"
-       data-side-pagination="server" data-undefined-text="${undefined_text}" data-striped="true" data-form-id="${form_id}">
+       data-side-pagination="server" data-undefined-text="${undefined_text}" data-striped="true"
+       data-form-id="${form_id}">
     <thead>
     <tr>
         <#nested/>
@@ -18,23 +19,23 @@
 <#macro th title field="" class="" sortable="true" render="false" datetime="false">
 <th data-field="${field}" class="${class}"
     <#if field!=''>
-         data-sortable="${sortable}"
+    data-sortable="${sortable}"
     </#if>
     <#if render=="true">
-        <#--<#assign dataFormatter='<@random property="xxx"/>'/>-->
-        <#local dataFormatter=random/>
-    data-formatter="${dataFormatter?string}"
+        <#local uuid=app('uuid')/>
+        <#local formatter=uuid + "Format"/>
+    data-formatter="${formatter}"
     </#if>
 >
 ${title}
     <#if render=="true">
-        <div id="${dataFormatter}" class="hidden">
+        <div id="${uuid}" class="hidden">
             <#nested/>
         </div>
         <script>
-            function ${dataFormatter}(value, row, index) {
+            function ${formatter}(value, row, index) {
                 var data = {"value": value, "row": row, "index": index};
-                return template('${dataFormatter}', data);
+                return template('${uuid}', data);
             }
         </script>
     </#if>

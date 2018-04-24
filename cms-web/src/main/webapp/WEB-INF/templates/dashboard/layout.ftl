@@ -49,8 +49,6 @@
 <body class="skin-2">
 <#include "navbar.ftl"/>
 
-<#assign aaa=(random())/>
-
 <div class="main-container" id="main-container">
 
 <#include "sidebar.ftl"/>

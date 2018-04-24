@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.util;
 
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.FileInputStream;
@@ -18,6 +19,8 @@ import java.util.Properties;
 public class PropertiesUtil {
 
     private static Properties props;
+
+    @Getter
     private static String appName;
 
     static {
