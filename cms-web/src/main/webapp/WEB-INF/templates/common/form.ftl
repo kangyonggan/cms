@@ -29,6 +29,21 @@
 </div>
 </#macro>
 
+<#--下拉选择框-->
+<#macro select name label value="" inline="false" class="" placeholder="" readonly="false" type="single" required="false">
+<div class="form-group <#if inline=='true'>col-lg-4 col-md-6 col-xs-12</#if>">
+    <div class="app-label nowrap <#if inline=='true'>col-md-5 col-xs-12<#else>col-md-3</#if>">
+        <label class="<#if required=="true">required</#if>">${label}</label>
+    </div>
+    <div class="col-md-7 controls <#if inline=='true'>col-xs-12</#if>">
+        <select id="${name}" name="${name}" class="form-control ${class} <#if readonly=="true">readonly</#if>">
+            <option value="">${(placeholder=='')?string('请输入${label}', placeholder)}</option>
+            <#nested />
+        </select>
+    </div>
+</div>
+</#macro>
+
 <#--表单按钮组-->
 <#macro form_actions align="center" background="true">
 <#if background=="true">
