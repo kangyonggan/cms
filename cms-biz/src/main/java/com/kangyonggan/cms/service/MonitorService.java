@@ -1,5 +1,7 @@
 package com.kangyonggan.cms.service;
 
+import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.cms.model.Monitor;
 import com.kangyonggan.extra.core.model.MonitorInfo;
 
 import java.util.List;
@@ -16,5 +18,13 @@ public interface MonitorService {
      * @param monitorInfo
      */
     void saveMonitor(MonitorInfo monitorInfo);
+
+    /**
+     * 搜索操作日志
+     *
+     * @param params
+     * @return
+     */
+    List<Monitor> searchMonitors(Params params);
 
 }

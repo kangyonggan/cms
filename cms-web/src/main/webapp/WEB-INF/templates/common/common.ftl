@@ -16,3 +16,11 @@
 <#macro time>
 {{value | timeFormat}}
 </#macro>
+
+<#macro yesNo>
+{{if value==1}}
+是
+{{else}}
+否
+{{/if}}
+</#macro>
