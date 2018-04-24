@@ -18,10 +18,20 @@
 </@c.form>
 
 <@c.table url="${baseUrl}/list">
-    <@c.th field="app" title="应用名称" class="hidden-sm hidden-xs"/>
-    <@c.th field="type" title="操作类型" />
-    <@c.th field="description" title="描述" sortable="true" class="hidden-sm hidden-xs"/>
-    <@c.th field="hasReturnValue" title="有无返回值" sortable="true" render="true">
+    <@c.th field="app" title="应用名称"/>
+    <@c.th field="type" title="操作类型" render="true" class="hidden-sm hidden-xs">
+        {{if value=="CREATE"}}
+            新增
+        {{else if value=="UPDATE"}}
+            更新
+        {{else if value=="DELETED"}}
+            删除
+        {{else}}
+            value
+        {{/if}}
+    </@c.th>
+    <@c.th field="description" title="描述" sortable="true" />
+    <@c.th field="hasReturnValue" title="有无返回值" sortable="true" render="true" class="hidden-sm hidden-xs">
         <@c.yesNo/>
     </@c.th>
     <@c.th field="username" title="操作用户" sortable="true"/>
