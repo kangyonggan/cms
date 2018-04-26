@@ -5,13 +5,13 @@ import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
 import com.kangyonggan.cms.model.Preference;
 import com.kangyonggan.cms.service.PreferenceService;
-import com.kangyonggan.cms.util.ShiroUtils;
 import com.kangyonggan.cms.util.StringUtil;
 import com.kangyonggan.extra.core.annotation.Log;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +25,10 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
     @Override
     @Log
     public List<Preference> findPreferencesByTypeAndUsername(String type, String username) {
+        if (StringUtil.hasEmpty(type, username)) {
+            return new ArrayList<>(0);
+        }
+
         Preference preference = new Preference();
         preference.setType(type);
         preference.setUsername(username);
@@ -35,6 +39,9 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
     @Override
     @Log
     public Preference findPreferenceByTypeNameAndUsername(String type, String name, String username) {
+        if (StringUtil.hasEmpty(type, name, username)) {
+            return null;
+        }
         Preference preference = new Preference();
         preference.setType(type);
         preference.setName(name);
@@ -70,13 +77,6 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
 
         PageHelper.startPage(params.getPageNum(), params.getPageSize());
         return myMapper.selectByExample(example);
-    }
-
-    @Override
-    @Log
-    public void savePreference(Preference preference) {
-        preference.setUsername(ShiroUtils.getShiroUsername());
-        myMapper.insertSelective(preference);
     }
 
     @Override

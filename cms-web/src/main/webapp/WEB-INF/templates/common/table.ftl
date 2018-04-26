@@ -22,7 +22,7 @@
     data-sortable="${sortable?c}"
     </#if>
     <#if render>
-        <#local uuid=app('uuid')/>
+        <#local uuid=app('uuid', 'th')/>
         <#local formatter=uuid + "Format"/>
     data-formatter="${formatter}"
     </#if>
@@ -40,4 +40,43 @@ ${title}
         </script>
     </#if>
 </th>
+</#macro>
+
+<#--表格的格式化-->
+<#macro thFormat type="" enum_key="">
+    <#if type=="enum">
+        <#local uuid=app('uuid', 'func')/>
+        {{value | ${uuid}}}
+        <script>
+        var obj = {};
+        <#assign map=enum('map', enum_key)/>
+        <#if map?? && map?size gt 0>
+            <#list map?keys as key>
+            obj["${key}"] = "${map[key]}";
+            </#list>
+        </#if>
+        template.helper('${uuid}', function (value) {
+            for (var key in obj){
+                if (key == value) {
+                    return obj[key];
+                }
+            }
+            return value;
+        });
+    </script>
+    <#elseif type=="datetime">
+    {{value | datetimeFormat}}
+    <#elseif type=="date">
+    {{value | dateFormat}}
+    <#elseif type=="time">
+    {{value | timeFormat}}
+    <#elseif type=="yesNo">
+    {{if value==1}}
+        是
+    {{else}}
+        否
+    {{/if}}
+    <#else>
+    {{value}}
+    </#if>
 </#macro>

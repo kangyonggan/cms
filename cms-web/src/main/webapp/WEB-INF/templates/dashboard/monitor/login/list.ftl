@@ -18,6 +18,6 @@
     <@c.th field="username" title="用户名" />
     <@c.th field="ip" title="登录IP" sortable=true/>
     <@c.th field="createdTime" title="登录时间" render=true class="hidden-sm hidden-xs">
-        <@c.datetime/>
+        <@c.thFormat type="datetime"/>
     </@c.th>
 </@c.table>

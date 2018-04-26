@@ -54,40 +54,6 @@ public class DashboardSystemPreferenceController extends BaseController {
     }
 
     /**
-     * 添加偏好
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "create", method = RequestMethod.GET)
-    @RequiresPermissions("SYSTEM_PREFERENCE")
-    public String create(Model model) {
-        model.addAttribute("preference", new Preference());
-        return getPathFormModal();
-    }
-
-    /**
-     * 保存偏好
-     *
-     * @param preference
-     * @param result
-     * @return
-     */
-    @RequestMapping(value = "save", method = RequestMethod.POST)
-    @ResponseBody
-    @RequiresPermissions("SYSTEM_PREFERENCE")
-    public Map<String, Object> save(@ModelAttribute("preference") @Valid Preference preference, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
-        if (!result.hasErrors()) {
-            preferenceService.savePreference(preference);
-        } else {
-            setResultMapFailure(resultMap);
-        }
-
-        return resultMap;
-    }
-
-    /**
      * 编辑偏好
      *
      * @param id

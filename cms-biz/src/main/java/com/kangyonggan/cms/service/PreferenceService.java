@@ -39,13 +39,6 @@ public interface PreferenceService {
     List<Preference> searchPreferences(Params params);
 
     /**
-     * 保存偏好
-     *
-     * @param preference
-     */
-    void savePreference(Preference preference);
-
-    /**
      * 查找偏好
      *
      * @param id

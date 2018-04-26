@@ -32,13 +32,13 @@
     </@c.th>
     <@c.th field="description" title="描述" sortable=true />
     <@c.th field="hasReturnValue" title="有无返回值" sortable=true render=true class="hidden-sm hidden-xs">
-        <@c.yesNo/>
+        <@c.thFormat type="yesNo"/>
     </@c.th>
     <@c.th field="username" title="操作用户" sortable=true/>
     <@c.th field="beginTime" title="调用开始时间" render=true class="hidden-sm hidden-xs">
-        <@c.datetime/>
+        <@c.thFormat type="datetime"/>
     </@c.th>
     <@c.th field="endTime" title="调用结束时间" render=true class="hidden-sm hidden-xs">
-        <@c.datetime/>
+        <@c.thFormat type="datetime"/>
     </@c.th>
 </@c.table>

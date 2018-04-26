@@ -31,7 +31,7 @@
 </#macro>
 
 <#--下拉选择框-->
-<#macro select name label value="" inline=false class="" placeholder="" readonly=false type="single" required=false map={}>
+<#macro select name label value="" inline=false class="" placeholder="" readonly=false type="single" required=false enum_key="">
 <div class="form-group <#if inline>col-lg-4 col-md-6 col-xs-12</#if>">
     <div class="app-label nowrap <#if inline>col-md-5 col-xs-12<#else>col-md-3</#if>">
         <label class="<#if required>required</#if>">${label}</label>
@@ -39,10 +39,14 @@
     <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
         <select id="${name}" name="${name}" class="form-control ${class} <#if readonly>readonly</#if>">
             <option value="">${(placeholder=='')?string('请输入${label}', placeholder)}</option>
-            <#if map?? && map?size gt 0>
-                <#list map?keys as key>
-                    <option value="${key}">${map[key]}</option>
-                </#list>
+
+            <#if enum_key != "">
+                <#assign map=enum('map', enum_key)/>
+                <#if map?? && map?size gt 0>
+                    <#list map?keys as key>
+                        <option value="${key}" <#if value==key>selected</#if>>${map[key]}</option>
+                    </#list>
+                </#if>
             </#if>
             <#nested />
         </select>

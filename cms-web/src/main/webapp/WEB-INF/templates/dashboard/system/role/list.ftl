@@ -21,7 +21,7 @@
         <#include "delete.ftl"/>
     </@c.th>
     <@c.th field="createdTime" title="创建时间" render=true class="hidden-sm hidden-xs">
-        <@c.datetime/>
+        <@c.thFormat type="datetime"/>
     </@c.th>
     <@c.th title="操作" render=true>
         <#include "operation.ftl"/>
