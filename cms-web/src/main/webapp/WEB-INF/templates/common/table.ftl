@@ -46,17 +46,16 @@ ${title}
 <#macro thFormat type="" enum_key="">
     <#if type=="enum">
         <#local uuid=app('uuid', 'func')/>
-        {{value | ${uuid}}}
-        <script>
+    <script>
         var obj = {};
-        <#assign map=enum('map', enum_key)/>
-        <#if map?? && map?size gt 0>
-            <#list map?keys as key>
-            obj["${key}"] = "${map[key]}";
-            </#list>
-        </#if>
+            <#assign map=enum('map', enum_key)/>
+            <#if map?? && map?size gt 0>
+                <#list map?keys as key>
+                obj["${key}"] = "${map[key]}";
+                </#list>
+            </#if>
         template.helper('${uuid}', function (value) {
-            for (var key in obj){
+            for (var key in obj) {
                 if (key == value) {
                     return obj[key];
                 }
@@ -64,6 +63,7 @@ ${title}
             return value;
         });
     </script>
+    {{value | ${uuid}}}
     <#elseif type=="datetime">
     {{value | datetimeFormat}}
     <#elseif type=="date">
@@ -72,9 +72,9 @@ ${title}
     {{value | timeFormat}}
     <#elseif type=="yesNo">
     {{if value==1}}
-        是
+    是
     {{else}}
-        否
+    否
     {{/if}}
     <#else>
     {{value}}
