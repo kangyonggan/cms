@@ -15,8 +15,9 @@
     <@c.th field="type" title="偏好类型" render=true>
         <@c.thFormat type="enum" enum_key="preferenceType"/>
     </@c.th>
-    <@c.th field="name" title="偏好名称" />
     <@c.th field="username" title="用户名" sortable=true/>
+    <@c.th field="name" title="偏好名称" sortable=true/>
+    <@c.th field="value" title="偏好的值" sortable=true/>
     <@c.th field="createdTime" title="创建时间" render=true class="hidden-sm hidden-xs">
         <@c.thFormat type="datetime"/>
     </@c.th>
