@@ -31,7 +31,7 @@
 </#macro>
 
 <#--下拉选择框-->
-<#macro select name label value="" inline=false class="" placeholder="" readonly=false type="single" required=false enum_key="">
+<#macro select name label value="" inline=false class="" placeholder="" readonly=false type="single" required=false enum_key="" show_code=true>
 <div class="form-group <#if inline>col-lg-4 col-md-6 col-xs-12</#if>">
     <div class="app-label nowrap <#if inline>col-md-5 col-xs-12<#else>col-md-3</#if>">
         <label class="<#if required>required</#if>">${label}</label>
@@ -44,7 +44,9 @@
                 <#assign map=enum('map', enum_key)/>
                 <#if map?? && map?size gt 0>
                     <#list map?keys as key>
-                        <option value="${key}" <#if value==key>selected</#if>>${map[key]}</option>
+                        <option value="${key}" <#if value==key>selected</#if>>
+                        ${map[key]}<#if show_code>[${key}]</#if>
+                        </option>
                     </#list>
                 </#if>
             </#if>

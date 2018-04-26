@@ -43,7 +43,7 @@ ${title}
 </#macro>
 
 <#--表格的格式化-->
-<#macro thFormat type="" enum_key="">
+<#macro thFormat type="" enum_key="" show_code=true>
     <#if type=="enum">
         <#local uuid=app('uuid', 'func')/>
     <script>
@@ -57,7 +57,7 @@ ${title}
         template.helper('${uuid}', function (value) {
             for (var key in obj) {
                 if (key == value) {
-                    return obj[key];
+                    return obj[key]<#if show_code> + "[" + key + "]"</#if>;
                 }
             }
             return value;
