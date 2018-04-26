@@ -176,7 +176,7 @@ function updateMenuActive(hash) {
     // 父菜单
     var $parent = $menu.parents("li");
     if ($parent.length > 0) {
-        $parent.addClass("open");
+        $parent.addClass("open active");
     }
     $menu.addClass("active");
 }

@@ -67,6 +67,8 @@
         </#if>
 
             <div class="page-content">
+                <#include "settings.ftl"/>
+
                 <div class="page-content-area"></div>
             </div>
         </div>

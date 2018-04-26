@@ -1,7 +1,11 @@
 <li>
     <a <#if menu.leaf?? && menu.leaf?size gt 0>class="dropdown-toggle" href="javascript:"
        <#else>href="#${menu.url}"</#if> data-url="${menu.url}">
-        <i class="${menu.icon}"></i>
+        <#if menu.icon != ''>
+            <i class="${menu.icon}"></i>
+        <#else>
+            <i class="menu-icon fa fa-caret-right"></i>
+        </#if>
         <span class="menu-text">
         ${menu.name}
                 </span>

@@ -1,5 +1,5 @@
 <#if !noSidebar??>
-<div id="sidebar" class="sidebar responsive">
+<div id="sidebar" class="sidebar responsive ${app('preference', 'ace', 'fixed-sidebar')}">
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
             <button class="btn btn-success">
