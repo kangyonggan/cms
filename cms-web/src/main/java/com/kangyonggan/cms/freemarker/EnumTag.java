@@ -6,10 +6,7 @@ import com.kangyonggan.extra.core.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author kangyonggan
@@ -26,7 +23,7 @@ public class EnumTag extends AbstractFunctionTag {
     /**
      * 所有标有@Enum注解的枚举
      */
-    private Map<String, Object> objMap;
+    private Map<String, Class<?>> classMap;
 
     /**
      * 所有的@Enum
@@ -41,7 +38,7 @@ public class EnumTag extends AbstractFunctionTag {
      * 初始化枚举
      */
     private void initEnums() {
-        objMap = new HashMap<>(16);
+        classMap = new HashMap<>(16);
         enumMap = new HashMap<>(16);
         List<Class<?>> classList = PackageUtil.getClass(ENUM_BASE_PACKAGE);
         for (Class<?> clazz : classList) {
@@ -55,7 +52,7 @@ public class EnumTag extends AbstractFunctionTag {
                 if (existKey(key)) {
                     throw new RuntimeException("@Enum注解使用错误，key=" + key + "已存在！");
                 }
-                objMap.put(key, clazz);
+                classMap.put(key, clazz);
                 enumMap.put(key, e);
             }
         }
@@ -85,9 +82,9 @@ public class EnumTag extends AbstractFunctionTag {
             throw new RuntimeException("获取枚举的名值对时必须制定枚举的key！");
         }
         String key = arguments.get(1).toString();
-        Object enumObj = objMap.get(key);
+        Class<?> enumClass = classMap.get(key);
         Enum e = enumMap.get(key);
-        if (enumObj == null || e == null) {
+        if (enumClass == null || e == null) {
             throw new RuntimeException("获取枚举的名值对时异常，key=" + key + "不存在！");
         }
 
@@ -96,8 +93,9 @@ public class EnumTag extends AbstractFunctionTag {
         String name = e.name();
 
         try {
-            Object codeObj = enumObj.getClass().getDeclaredMethod("get" + StringUtils.capitalize(code)).invoke(enumObj);
-            Object nameObj = enumObj.getClass().getDeclaredMethod("get" + StringUtils.capitalize(name)).invoke(enumObj);
+            Object enumObj = enumClass.getEnumConstants()[0];
+            Object codeObj = enumClass.getDeclaredMethod("get" + StringUtils.capitalize(code)).invoke(enumObj);
+            Object nameObj = enumClass.getDeclaredMethod("get" + StringUtils.capitalize(name)).invoke(enumObj);
 
             data.put(codeObj, nameObj);
         } catch (Exception ex) {
