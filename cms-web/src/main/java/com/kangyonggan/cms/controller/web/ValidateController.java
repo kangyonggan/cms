@@ -1,8 +1,6 @@
 package com.kangyonggan.cms.controller.web;
 
-import com.kangyonggan.cms.service.MenuService;
-import com.kangyonggan.cms.service.RoleService;
-import com.kangyonggan.cms.service.UserService;
+import com.kangyonggan.cms.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +24,12 @@ public class ValidateController {
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private DictionaryTypeService dictionaryTypeService;
+
+    @Autowired
+    private DictionaryService dictionaryService;
 
     /**
      * 校验用户名是否可用
@@ -79,6 +83,44 @@ public class ValidateController {
         }
 
         return !menuService.existsMenuCode(code);
+    }
+
+    /**
+     * 校验字典类型是否可用
+     *
+     * @param type
+     * @param oldType
+     * @return
+     */
+    @RequestMapping(value = "dictType", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean validateDictType(@RequestParam("type") String type,
+                                    @RequestParam(value = "oldType", required = false, defaultValue = "") String oldType) {
+        if (type.equals(oldType)) {
+            return true;
+        }
+
+        return !dictionaryTypeService.existsDictionaryType(type);
+    }
+
+    /**
+     * 校验字典是否可用
+     *
+     * @param type
+     * @param oldType
+     * @return
+     */
+    @RequestMapping(value = "dict", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean validateDict(@RequestParam("type") String type,
+                                @RequestParam(value = "oldType", required = false, defaultValue = "") String oldType,
+                                @RequestParam("code") String code,
+                                @RequestParam(value = "oldCode", required = false, defaultValue = "") String oldCode) {
+        if (type.equals(oldType) && code.equals(oldCode)) {
+            return true;
+        }
+
+        return !dictionaryService.existsDictionary(type, code);
     }
 
 }

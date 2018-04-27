@@ -43,4 +43,24 @@ public class AbstractFunctionTag implements TemplateMethodModelEx {
     protected boolean hasLessArgs(List arguments, int minLength) {
         return arguments.size() >= minLength;
     }
+
+    /**
+     * 判断至少要有2个参数
+     *
+     * @param arguments
+     * @return
+     */
+    protected boolean hasLessTwoArgs(List arguments) {
+        return arguments.size() >= 2;
+    }
+
+    /**
+     * 判断至少要有3个参数
+     *
+     * @param arguments
+     * @return
+     */
+    protected boolean hasLessThreeArgs(List arguments) {
+        return arguments.size() >= 3;
+    }
 }

@@ -226,6 +226,62 @@ CREATE INDEX ix_username
 CREATE UNIQUE INDEX username_type_name_UNIQUE
   ON tb_preference (username, type, name);
 
+-- ----------------------------
+--  Table structure for tb_dictionary_type
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_dictionary_type;
+
+CREATE TABLE tb_dictionary_type
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  type         VARCHAR(20)                           NOT NULL
+  COMMENT '字典类型',
+  name         VARCHAR(64)                           NOT NULL
+  COMMENT '类型名称',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '字典表';
+CREATE INDEX ix_type
+  ON tb_dictionary_type (type);
+
+-- ----------------------------
+--  Table structure for tb_dictionary
+-- ----------------------------
+DROP TABLE
+IF EXISTS tb_dictionary;
+
+CREATE TABLE tb_dictionary
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  type         VARCHAR(20)                           NOT NULL
+  COMMENT '字典类型',
+  code         VARCHAR(64)                           NOT NULL
+  COMMENT '字典代码',
+  value        VARCHAR(256)                          NOT NULL
+  COMMENT '字典的值',
+  remark       VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '备注',
+  sort         INT(11)                               NOT NULL                    DEFAULT 0
+  COMMENT '排序（从0开始）',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '字典表';
+CREATE UNIQUE INDEX type_code_UNIQUE
+  ON tb_dictionary (type, code);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -259,7 +315,10 @@ VALUES
   ('SYSTEM_USER', '用户管理', 'SYSTEM', 'system/user', 0, ''),
   ('SYSTEM_ROLE', '角色管理', 'SYSTEM', 'system/role', 1, ''),
   ('SYSTEM_MENU', '菜单管理', 'SYSTEM', 'system/menu', 2, ''),
-  ('SYSTEM_PREFERENCE', '偏好管理', 'SYSTEM', 'system/preference', 3, ''),
+  ('SYSTEM_DICT', '字典管理', 'SYSTEM', 'system/dictionary', 3, ''),
+  ('SYSTEM_DICT_TYPE', '字典类型', 'SYSTEM_DICT', 'system/dict/type', 0, ''),
+  ('SYSTEM_DICT_CONTENT', '字典内容', 'SYSTEM_DICT', 'system/dict/content', 1, ''),
+  ('SYSTEM_PREFERENCE', '偏好管理', 'SYSTEM', 'system/preference', 4, ''),
 
   ('MONITOR', '监控', 'DASHBOARD', 'monitor', 2, 'menu-icon fa fa-laptop'),
   ('MONITOR_LOGIN', '登录日志', 'MONITOR', 'monitor/login', 0, ''),
@@ -289,3 +348,13 @@ INSERT INTO tb_role_menu SELECT
                            code
                          FROM tb_menu
                          WHERE code LIKE 'USER%' OR code = 'DASHBOARD';
+
+INSERT INTO tb_dictionary_type
+(type, name) VALUES
+  ('MONITOR_TYPE', '监控类型');
+
+INSERT INTO tb_dictionary (type, code, value, sort)
+VALUES
+  ('MONITOR_TYPE', 'INSERT', '新增', 0),
+  ('MONITOR_TYPE', 'UPDATE', '更新', 1),
+  ('MONITOR_TYPE', 'DELETE', '删除', 2);

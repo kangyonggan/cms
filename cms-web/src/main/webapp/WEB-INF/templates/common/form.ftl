@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
         <select id="${name}" name="${name}" class="form-control ${class} <#if readonly>readonly</#if>">
-            <option value="">${(placeholder=='')?string('请输入${label}', placeholder)}</option>
+            <option value="">${(placeholder=='')?string('请选择${label}', placeholder)}</option>
 
             <#if enum_key != "">
                 <#assign map=enum('map', enum_key)/>

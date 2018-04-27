@@ -26,7 +26,7 @@ public class AppTag extends AbstractFunctionTag {
      * @return
      */
     public String uuid(List arguments) {
-        if (!hasLessArgs(arguments, 2)) {
+        if (!hasLessTwoArgs(arguments)) {
             throw new RuntimeException("获取UUID, 时没有指定前缀");
         }
         String prefix = arguments.get(1).toString();
@@ -39,7 +39,7 @@ public class AppTag extends AbstractFunctionTag {
      * @param arguments
      */
     public String preference(List arguments) {
-        if (!hasLessArgs(arguments, 3)) {
+        if (!hasLessThreeArgs(arguments)) {
             throw new RuntimeException("获取偏好时必须指定type和name！");
         }
         String type = arguments.get(1).toString();

@@ -78,7 +78,7 @@ public class EnumTag extends AbstractFunctionTag {
      * @return
      */
     public LinkedHashMap<Object, Object> map(List arguments) {
-        if (!hasLessArgs(arguments, 2)) {
+        if (!hasLessTwoArgs(arguments)) {
             throw new RuntimeException("获取枚举的名值对时必须指定枚举的key！");
         }
         String key = arguments.get(1).toString();

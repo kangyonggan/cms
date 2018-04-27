@@ -10,6 +10,9 @@ import lombok.Getter;
 @Enum(code = "type")
 public enum PreferenceType {
 
+    /**
+     * ace偏好
+     */
     ACE("ace", "Ace Admin的偏好");
 
     @Getter

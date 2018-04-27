@@ -34,7 +34,6 @@ public class ShiroUtils {
         try {
             return ((ShiroUser) SecurityUtils.getSubject().getPrincipal()).getUsername();
         } catch (Exception e) {
-            log.warn("无法获取当前登录的用户名", e);
             return null;
         }
     }
