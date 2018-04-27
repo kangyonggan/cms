@@ -35,11 +35,15 @@ public class DashboardSystemDictContentController extends BaseController {
     /**
      * 字典管理
      *
+     * @param model
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
-    public String index() {
+    public String index(Model model) {
+        List<DictionaryType> dictionaryTypes = dictionaryTypeService.findAllDictionaryTypes();
+
+        model.addAttribute("dictionaryTypes", dictionaryTypes);
         return getPathList();
     }
 

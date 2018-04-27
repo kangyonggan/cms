@@ -2,7 +2,11 @@
 <#assign baseUrl="${ctx}/dashboard/system/dict/content"/>
 
 <@c.form class="col-xs-12 fa-border radius-base">
-    <@c.input name="query.type" label="字典类型" inline=true/>
+    <@c.select name="query.type" label="字典类型" inline=true>
+        <#list dictionaryTypes as dictionaryType>
+        <option value="${dictionaryType.type}">${dictionaryType.name}</option>
+        </#list>
+    </@c.select>
     <@c.input name="query.code" label="字典代码" inline=true/>
     <@c.input name="query.value" label="字典的值" inline=true/>
     <@c.form_actions background=false>
