@@ -5,6 +5,7 @@ import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
 import com.kangyonggan.cms.model.Preference;
 import com.kangyonggan.cms.service.PreferenceService;
+import com.kangyonggan.cms.util.ShiroUtils;
 import com.kangyonggan.cms.util.StringUtil;
 import com.kangyonggan.extra.core.annotation.Log;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +21,6 @@ import java.util.List;
  */
 @Service
 public class PreferenceServiceImpl extends BaseService<Preference> implements PreferenceService {
-
 
     @Override
     @Log
@@ -95,5 +95,24 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
     @Log
     public void deletePreferenceById(Long id) {
         myMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    @Log
+    public void updateOrSavePreference(String type, String name, String value) {
+        Preference preference = new Preference();
+        preference.setValue(value);
+
+        Example example = new Example(Preference.class);
+        example.createCriteria().andEqualTo("type", type).andEqualTo("name", name);
+        int count = myMapper.selectCountByExample(example);
+        if (count > 0) {
+            myMapper.updateByExampleSelective(preference, example);
+        } else {
+            preference.setType(type);
+            preference.setName(name);
+            preference.setUsername(ShiroUtils.getShiroUsername());
+            myMapper.insertSelective(preference);
+        }
     }
 }

@@ -59,4 +59,13 @@ public interface PreferenceService {
      * @param id
      */
     void deletePreferenceById(Long id);
+
+    /**
+     * 更新或者保存偏好
+     *
+     * @param type
+     * @param name
+     * @param value
+     */
+    void updateOrSavePreference(String type, String name, String value);
 }
