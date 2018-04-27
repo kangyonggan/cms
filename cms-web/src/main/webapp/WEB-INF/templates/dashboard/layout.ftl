@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/datepicker.min.css" />
+    <link rel="stylesheet" href="${ctx}/static/ace/dist/css/chosen.min.css" />
 
     <!-- page specific plugin styles -->
 
@@ -112,6 +113,7 @@
 <script src="${ctx}/static/libs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/jquery.gritter.min.js"></script>
+<script src="${ctx}/static/ace/dist/js/chosen.jquery.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-extra.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-elements.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace.min.js"></script>

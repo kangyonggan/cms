@@ -33,14 +33,17 @@
 
 <#--下拉选择框-->
 <#macro select name label value="" inline=false class="" placeholder=""
-    readonly=false type="single" required=false enum_key="" dict_type="" show_code=true>
+readonly=false type="single" required=false enum_key="" dict_type="" show_code=true>
 <div class="form-group <#if inline>col-lg-4 col-md-6 col-xs-12</#if>">
     <div class="app-label nowrap <#if inline>col-md-5 col-xs-12<#else>col-md-3</#if>">
         <label class="<#if required>required</#if>">${label}</label>
     </div>
     <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
         <select id="${name}" name="${name}" class="form-control ${class} <#if readonly>readonly</#if>">
-            <option value="">${(placeholder=='')?string('请选择${label}', placeholder)}</option>
+
+            <#if !class?contains("chosen-select")>
+                <option value="">${(placeholder=='')?string('请选择${label}', placeholder)}</option>
+            </#if>
 
             <#if enum_key != "">
                 <#local map=enum('map', enum_key)/>
@@ -63,6 +66,13 @@
             </#if>
             <#nested />
         </select>
+        <#if class?contains("chosen-select")>
+            <script>
+                $('.chosen-select').chosen({
+                    allow_single_deselect: true
+                });
+            </script>
+        </#if>
     </div>
 </div>
 </#macro>

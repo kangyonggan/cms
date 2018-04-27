@@ -2,7 +2,9 @@
 <#assign baseUrl="${ctx}/dashboard/system/user"/>
 
 <@c.form class="col-xs-12 fa-border radius-base">
-    <@c.input name="query.username" label="用户名" inline=true/>
+    <@c.select name="username" label="用户名" inline=true class="chosen-select">
+
+    </@c.select>
     <@c.input name="query.realname" label="真实姓名" inline=true/>
     <@c.input name="query.beginDate" label="创建开始日期" inline=true class="date-picker" readonly=true/>
     <@c.input name="query.endDate" label="创建结束日期" inline=true class="date-picker" readonly=true/>
