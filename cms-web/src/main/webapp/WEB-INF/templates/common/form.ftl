@@ -41,9 +41,7 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
     <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
         <select id="${name}" name="${name}" class="form-control ${class} <#if readonly>readonly</#if>">
 
-            <#if !class?contains("chosen-select")>
-                <option value="">${(placeholder=='')?string('请选择${label}', placeholder)}</option>
-            </#if>
+            <option value="">${(placeholder=='')?string('请选择${label}', placeholder)}</option>
 
             <#if enum_key != "">
                 <#local map=enum('map', enum_key)/>
@@ -66,13 +64,6 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
             </#if>
             <#nested />
         </select>
-        <#if class?contains("chosen-select")>
-            <script>
-                $('.chosen-select').chosen({
-                    allow_single_deselect: true
-                });
-            </script>
-        </#if>
     </div>
 </div>
 </#macro>
