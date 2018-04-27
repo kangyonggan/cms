@@ -6,8 +6,8 @@
     <div id="login-box" class="login-box visible widget-box">
         <div class="widget-body">
             <div class="widget-main">
-                <h4 class="header pink lighter bigger">
-                    <i class="ace-icon fa fa-coffee pink"></i>
+                <h4 class="header skin-color lighter bigger">
+                    <i class="ace-icon fa fa-coffee skin-color"></i>
                     登录
                 </h4>
 
@@ -53,7 +53,7 @@
                             <i class="ace-icon fa fa-refresh"></i>
                             重置
                         </button>
-                        <button id="submit" class="width-35 pull-right btn btn-sm btn-pink"
+                        <button id="submit" class="width-35 pull-right btn btn-sm btn-skin"
                                 data-loading-text="登录中...">
                             <i class="ace-icon fa fa-key"></i>
                             登录

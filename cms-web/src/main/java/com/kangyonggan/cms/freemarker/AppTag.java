@@ -44,9 +44,13 @@ public class AppTag extends AbstractFunctionTag {
         }
         String type = arguments.get(1).toString();
         String name = arguments.get(2).toString();
+        String defaultValue = "";
+        if (hasLessFourArgs(arguments)) {
+            defaultValue = arguments.get(3).toString();
+        }
 
         Preference preference = preferenceService.findPreferenceByTypeNameAndUsername(type, name, ShiroUtils.getShiroUsername());
-        return preference == null ? "" : preference.getValue();
+        return preference == null ? defaultValue : preference.getValue();
     }
 
 }

@@ -47,7 +47,7 @@
     <![endif]-->
 <@block name="app-style"/>
 </head>
-<body class="skin-2">
+<body class="${app('preference', 'ace', 'skin', 'no-skin')}">
 <#include "navbar.ftl"/>
 
 <div class="main-container" id="main-container">

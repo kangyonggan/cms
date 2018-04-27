@@ -24,8 +24,8 @@
         <@shiro.user>
             <#if _user??>
                 <ul class="nav ace-nav">
-                    <li class="dark">
-                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="background: #c6487e;">
+                    <li>
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" id="user-info-toggle">
                             <img class="nav-user-photo" id="userAvatar" src="${ctx}/static/ace/dist/avatars/avatar5.png">
                             <span class="user-info">
                             <small>欢迎,</small>

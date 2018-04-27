@@ -2,10 +2,6 @@
     margin-left: 15px;
 }
 
-#login-box {
-    border: 1px solid #c6487e;
-}
-
 .error {
     color: red;
 }
@@ -64,6 +60,59 @@ tr.no-records-found td {
 .fixed-table-body {
     overflow-x: visible !important;
     overflow-y: visible !important;
+}
+
+/*skin*/
+.no-skin #user-info-toggle {
+    background: #438eb9;
+}
+
+.skin-1 #user-info-toggle {
+    background: #2c6aa0;
+}
+
+.skin-2 #user-info-toggle {
+    background: #c6487e;
+}
+
+.skin-3 #user-info-toggle {
+    background: #404040;
+}
+
+.skin-2 .btn-skin {
+    background-color: #d6487e!important;
+    border-color: #d6487e;
+}
+
+.skin-2 .btn-skin:hover {
+    background-color: #b73766!important;
+    border-color: #d6487e;
+}
+
+.skin-1 .btn-skin, .no-skin .btn-skin {
+    background-color: #428bca!important;
+    border-color: #428bca;
+}
+
+.skin-1 .btn-skin:hover, .no-skin .btn-skin:hover {
+    background-color: #1b6aaa!important;
+    border-color: #428bca;
+}
+
+.no-skin .skin-color {
+    color: #438eb9;
+}
+
+.skin-1 .skin-color {
+    color: #2c6aa0;
+}
+
+.skin-2 .skin-color {
+    color: #c6487e;
+}
+
+.skin-3 .skin-color {
+    color: #404040;
 }
 
 @media (min-width: 992px) {
