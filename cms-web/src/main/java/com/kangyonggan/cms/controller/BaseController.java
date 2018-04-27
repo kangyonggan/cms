@@ -1,17 +1,11 @@
 package com.kangyonggan.cms.controller;
 
-import com.kangyonggan.cms.constants.AppConstants;
-import com.kangyonggan.cms.constants.Resp;
 import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
 import com.kangyonggan.cms.interceptor.RequestInterceptor;
 import com.kangyonggan.cms.util.StringUtil;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.collections.map.HashedMap;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -22,7 +16,6 @@ import java.util.Map;
 public class BaseController {
 
     protected static final String DASHBOARD = "dashboard";
-    private static final String ERROR = "error";
     private String pathRoot;
     private static final String LIST = "/list";
     private static final String INDEX = "/index";
@@ -44,7 +37,7 @@ public class BaseController {
             pathRoot += arr[i];
         }
 
-        if (!pathRoot.startsWith(DASHBOARD) && !pathRoot.startsWith(ERROR)) {
+        if (!pathRoot.startsWith(DASHBOARD)) {
             pathRoot = "web/" + pathRoot;
         }
     }
@@ -182,22 +175,5 @@ public class BaseController {
 
     protected String getPathTableTr() {
         return pathRoot + TABLE_TR;
-    }
-
-    protected Map<String, Object> getResultMap() {
-        Map<String, Object> resultMap = new HashedMap(16);
-        resultMap.put(AppConstants.RESP_CO, Resp.SUCCESS.getRespCo());
-        resultMap.put(AppConstants.RESP_MSG, Resp.SUCCESS.getRespMsg());
-
-        return resultMap;
-    }
-
-    protected void setResultMapFailure(Map<String, Object> resultMap) {
-        setResultMapFailure(resultMap, null);
-    }
-
-    protected void setResultMapFailure(Map<String, Object> resultMap, String msg) {
-        resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
-        resultMap.put(AppConstants.RESP_MSG, StringUtils.isEmpty(msg) ? Resp.FAILURE.getRespMsg() : msg);
     }
 }

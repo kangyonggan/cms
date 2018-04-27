@@ -3,6 +3,7 @@ package com.kangyonggan.cms.controller.dashboard.system;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.Preference;
 import com.kangyonggan.cms.service.PreferenceService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -77,15 +77,15 @@ public class DashboardSystemPreferenceController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_PREFERENCE")
-    public Map<String, Object> update(@ModelAttribute("preference") @Valid Preference preference, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response update(@ModelAttribute("preference") @Valid Preference preference, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             preferenceService.updatePreference(preference);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -97,9 +97,9 @@ public class DashboardSystemPreferenceController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}/remove", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_PREFERENCE")
     @ResponseBody
-    public Map<String, Object> remove(@PathVariable("id") Long id) {
+    public Response remove(@PathVariable("id") Long id) {
         preferenceService.deletePreferenceById(id);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
 }

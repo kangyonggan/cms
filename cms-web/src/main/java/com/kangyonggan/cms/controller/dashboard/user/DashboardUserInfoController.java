@@ -3,6 +3,7 @@ package com.kangyonggan.cms.controller.dashboard.user;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.dto.ShiroUser;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.UserService;
@@ -57,8 +58,8 @@ public class DashboardUserInfoController extends BaseController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("USER_INFO")
-    public Map<String, Object> info(@ModelAttribute(value = "user") @Valid User user, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response info(@ModelAttribute(value = "user") @Valid User user, BindingResult result) {
+        Response response = Response.getSuccessResponse();
 
         if (!result.hasErrors()) {
             user.setUsername(ShiroUtils.getShiroUsername());
@@ -69,12 +70,12 @@ public class DashboardUserInfoController extends BaseController {
             }
 
             user = userService.findUserByUsername(user.getUsername());
-            resultMap.put("user", user);
+            response.put("user", user);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
 }

@@ -1,8 +1,8 @@
 package com.kangyonggan.cms.controller.web;
 
 import com.kangyonggan.cms.constants.AppConstants;
-import com.kangyonggan.cms.constants.Resp;
 import com.kangyonggan.cms.controller.BaseController;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.LoginLogService;
 import com.kangyonggan.cms.util.IpUtil;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -66,8 +65,8 @@ public class AuthController extends BaseController {
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> login(@RequestParam(value = "captcha") String captcha, User user, HttpServletRequest request) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response login(@RequestParam(value = "captcha") String captcha, User user, HttpServletRequest request) {
+        Response response = Response.getSuccessResponse();
 
         HttpSession session = request.getSession();
         String realCaptcha = (String) session.getAttribute(AppConstants.KEY_CAPTCHA);
@@ -75,9 +74,7 @@ public class AuthController extends BaseController {
         log.info("上送的验证码为：{}", captcha);
 
         if (!captcha.equalsIgnoreCase(realCaptcha)) {
-            resultMap.put(AppConstants.RESP_CO, Resp.FAILURE.getRespCo());
-            resultMap.put(AppConstants.RESP_MSG, "验证码错误或已失效");
-            return resultMap;
+            return response.failure("验证码错误或已失效");
         }
 
         // 清除验证码
@@ -92,25 +89,21 @@ public class AuthController extends BaseController {
             subject.login(token);
         } catch (UnknownAccountException uae) {
             log.warn("用户名不存在", uae);
-            setResultMapFailure(resultMap, "用户名不存在");
-            return resultMap;
+            return response.failure("用户名不存在");
         } catch (IncorrectCredentialsException ice) {
             log.warn("密码错误", ice);
-            setResultMapFailure(resultMap, "密码错误");
-            return resultMap;
+            return response.failure("密码错误");
         } catch (DisabledAccountException dae) {
             log.warn("账号已禁用", dae);
-            setResultMapFailure(resultMap, "账号已禁用, 请联系管理员");
-            return resultMap;
+            return response.failure("账号已禁用, 请联系管理员");
         } catch (Exception e) {
             log.error("未知异常", e);
-            setResultMapFailure(resultMap);
-            return resultMap;
+            return response.failure();
         }
 
         // 保存登录日志
         loginLogService.saveLoginLog(user.getUsername(), IpUtil.getIp(request));
-        return resultMap;
+        return response;
     }
 
     /**

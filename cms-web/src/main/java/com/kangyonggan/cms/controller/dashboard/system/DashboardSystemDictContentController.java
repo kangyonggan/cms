@@ -3,6 +3,7 @@ package com.kangyonggan.cms.controller.dashboard.system;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.Dictionary;
 import com.kangyonggan.cms.model.DictionaryType;
 import com.kangyonggan.cms.service.DictionaryService;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -88,15 +88,15 @@ public class DashboardSystemDictContentController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
-    public Map<String, Object> save(@ModelAttribute("dictionary") @Valid Dictionary dictionary, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response save(@ModelAttribute("dictionary") @Valid Dictionary dictionary, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             dictionaryService.saveDictionary(dictionary);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -126,15 +126,15 @@ public class DashboardSystemDictContentController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
-    public Map<String, Object> update(@ModelAttribute("dictionary") @Valid Dictionary dictionary, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response update(@ModelAttribute("dictionary") @Valid Dictionary dictionary, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             dictionaryService.updateDictionary(dictionary);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -147,11 +147,11 @@ public class DashboardSystemDictContentController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}/deleted/{isDeleted:\\b0\\b|\\b1\\b}", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
     @ResponseBody
-    public Map<String, Object> deleted(@PathVariable("id") Long id, @PathVariable("isDeleted") byte isDeleted) {
+    public Response deleted(@PathVariable("id") Long id, @PathVariable("isDeleted") byte isDeleted) {
         Dictionary dictionary = dictionaryService.findDictionaryById(id);
         dictionary.setIsDeleted(isDeleted);
         dictionaryService.updateDictionary(dictionary);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
     /**
@@ -163,9 +163,9 @@ public class DashboardSystemDictContentController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}/remove", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
     @ResponseBody
-    public Map<String, Object> remove(@PathVariable("id") Long id) {
+    public Response remove(@PathVariable("id") Long id) {
         dictionaryService.deleteDictionaryById(id);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
 }

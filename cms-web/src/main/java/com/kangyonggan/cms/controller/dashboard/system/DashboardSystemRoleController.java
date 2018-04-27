@@ -3,6 +3,7 @@ package com.kangyonggan.cms.controller.dashboard.system;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.Menu;
 import com.kangyonggan.cms.model.Role;
 import com.kangyonggan.cms.service.MenuService;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -82,15 +82,15 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_ROLE")
-    public Map<String, Object> save(@ModelAttribute("role") @Valid Role role, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response save(@ModelAttribute("role") @Valid Role role, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             roleService.saveRole(role);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -117,15 +117,15 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_ROLE")
-    public Map<String, Object> update(@ModelAttribute("role") @Valid Role role, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response update(@ModelAttribute("role") @Valid Role role, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             roleService.updateRole(role);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -138,11 +138,11 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "{code:[\\w]+}/deleted/{isDeleted:\\b0\\b|\\b1\\b}", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_ROLE")
     @ResponseBody
-    public Map<String, Object> deleted(@PathVariable("code") String code, @PathVariable("isDeleted") byte isDeleted) {
+    public Response deleted(@PathVariable("code") String code, @PathVariable("isDeleted") byte isDeleted) {
         Role role = roleService.findRoleByCode(code);
         role.setIsDeleted(isDeleted);
         roleService.updateRole(role);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
     /**
@@ -154,9 +154,9 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "{code:[\\w_]+}/remove", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_ROLE")
     @ResponseBody
-    public Map<String, Object> remove(@PathVariable("code") String code) {
+    public Response remove(@PathVariable("code") String code) {
         roleService.deleteRoleByCode(code);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
     /**
@@ -193,10 +193,10 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "{code:[\\w_]+}/menus", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_ROLE")
     @ResponseBody
-    public Map<String, Object> menus(@PathVariable("code") String code, @RequestParam(value = "menus") String menus) {
+    public Response menus(@PathVariable("code") String code, @RequestParam(value = "menus") String menus) {
         Role role = roleService.findRoleByCode(code);
 
         roleService.updateRoleMenus(role.getCode(), menus);
-        return getResultMap();
+        return Response.getSuccessResponse();
     }
 }

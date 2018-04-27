@@ -3,6 +3,7 @@ package com.kangyonggan.cms.controller.dashboard.system;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.Role;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.RoleService;
@@ -83,15 +84,15 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_USER")
-    public Map<String, Object> update(@ModelAttribute("user") @Valid User user, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response update(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             userService.updateUserByUsername(user);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -117,15 +118,15 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_USER")
-    public Map<String, Object> save(@ModelAttribute("user") @Valid User user, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response save(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             userService.saveUserWithDefaultRole(user);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -138,11 +139,11 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "{username:[\\w]+}/deleted/{isDeleted:\\b0\\b|\\b1\\b}", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_USER")
     @ResponseBody
-    public Map<String, Object> delete(@PathVariable("username") String username, @PathVariable("isDeleted") byte isDeleted) {
+    public Response delete(@PathVariable("username") String username, @PathVariable("isDeleted") byte isDeleted) {
         User user = userService.findUserByUsername(username);
         user.setIsDeleted(isDeleted);
         userService.updateUserByUsername(user);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
     /**
@@ -154,9 +155,9 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "{username:[\\w]+}/remove", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_ROLE")
     @ResponseBody
-    public Map<String, Object> remove(@PathVariable("username") String username) {
+    public Response remove(@PathVariable("username") String username) {
         userService.deleteUserByUsername(username);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
     /**
@@ -183,15 +184,15 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "password", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_USER")
-    public Map<String, Object> password(@ModelAttribute("user") @Valid User user, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response password(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             userService.updateUserPassword(user);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -224,11 +225,11 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "{username:[\\w]+}/roles", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_USER")
     @ResponseBody
-    public Map<String, Object> updateUserRoles(@PathVariable(value = "username") String username,
+    public Response updateUserRoles(@PathVariable(value = "username") String username,
                                                @RequestParam(value = "roles", defaultValue = "") String roles) {
         User user = userService.findUserByUsername(username);
         userService.updateUserRoles(user.getUsername(), roles);
 
-        return getResultMap();
+        return Response.getSuccessResponse();
     }
 }

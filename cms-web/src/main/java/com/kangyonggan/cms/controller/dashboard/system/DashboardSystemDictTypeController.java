@@ -3,6 +3,7 @@ package com.kangyonggan.cms.controller.dashboard.system;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.DictionaryType;
 import com.kangyonggan.cms.service.DictionaryTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -76,15 +76,15 @@ public class DashboardSystemDictTypeController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_TYPE")
-    public Map<String, Object> save(@ModelAttribute("dictionaryType") @Valid DictionaryType dictionaryType, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response save(@ModelAttribute("dictionaryType") @Valid DictionaryType dictionaryType, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             dictionaryTypeService.saveDictionaryType(dictionaryType);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -111,15 +111,15 @@ public class DashboardSystemDictTypeController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_TYPE")
-    public Map<String, Object> update(@ModelAttribute("dictionaryType") @Valid DictionaryType dictionaryType, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response update(@ModelAttribute("dictionaryType") @Valid DictionaryType dictionaryType, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             dictionaryTypeService.updateDictionaryType(dictionaryType);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -132,11 +132,11 @@ public class DashboardSystemDictTypeController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}/deleted/{isDeleted:\\b0\\b|\\b1\\b}", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_TYPE")
     @ResponseBody
-    public Map<String, Object> deleted(@PathVariable("id") Long id, @PathVariable("isDeleted") byte isDeleted) {
+    public Response deleted(@PathVariable("id") Long id, @PathVariable("isDeleted") byte isDeleted) {
         DictionaryType dictionaryType = dictionaryTypeService.findDictionaryTypeById(id);
         dictionaryType.setIsDeleted(isDeleted);
         dictionaryTypeService.updateDictionaryType(dictionaryType);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
     /**
@@ -148,9 +148,9 @@ public class DashboardSystemDictTypeController extends BaseController {
     @RequestMapping(value = "{id:[\\d]+}/remove", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_TYPE")
     @ResponseBody
-    public Map<String, Object> remove(@PathVariable("id") Long id) {
+    public Response remove(@PathVariable("id") Long id) {
         dictionaryTypeService.deleteDictionaryTypeById(id);
-        return super.getResultMap();
+        return Response.getSuccessResponse();
     }
 
 }

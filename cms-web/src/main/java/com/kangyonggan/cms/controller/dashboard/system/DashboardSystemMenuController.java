@@ -1,6 +1,7 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
 import com.kangyonggan.cms.controller.BaseController;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.Menu;
 import com.kangyonggan.cms.service.MenuService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -66,14 +66,14 @@ public class DashboardSystemMenuController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_MENU")
     @ResponseBody
-    public Map<String, Object> save(@ModelAttribute("menu") @Valid Menu menu, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response save(@ModelAttribute("menu") @Valid Menu menu, BindingResult result) {
+        Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
             menuService.saveMenu(menu);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
-        return resultMap;
+        return response;
     }
 
     /**
@@ -103,16 +103,16 @@ public class DashboardSystemMenuController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_MENU")
     @ResponseBody
-    public Map<String, Object> update(@ModelAttribute("menu") @Valid Menu menu, BindingResult result) {
-        Map<String, Object> resultMap = getResultMap();
+    public Response update(@ModelAttribute("menu") @Valid Menu menu, BindingResult result) {
+        Response response = Response.getSuccessResponse();
 
         if (!result.hasErrors()) {
             menuService.updateMenu(menu);
         } else {
-            setResultMapFailure(resultMap);
+            response.failure();
         }
 
-        return resultMap;
+        return response;
     }
 
     /**
@@ -124,9 +124,9 @@ public class DashboardSystemMenuController extends BaseController {
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_MENU")
     @ResponseBody
-    public Map<String, Object> delete(@ModelAttribute("menu") Menu menu) {
+    public Response delete(@ModelAttribute("menu") Menu menu) {
         menuService.deleteMenu(menu);
-        return getResultMap();
+        return Response.getSuccessResponse();
     }
 
 }
