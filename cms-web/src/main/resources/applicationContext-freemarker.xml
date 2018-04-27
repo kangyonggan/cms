@@ -50,6 +50,7 @@
                 <entry key="super" value-ref="superDirective"/>
                 <entry key="app" value-ref="appTag"/>
                 <entry key="enum" value-ref="enumTag"/>
+                <entry key="dict" value-ref="dictTag"/>
                 <entry key="shiro" value-ref="shiroTags"/>
             </map>
         </property>

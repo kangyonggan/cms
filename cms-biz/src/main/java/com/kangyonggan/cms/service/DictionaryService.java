@@ -56,4 +56,12 @@ public interface DictionaryService {
      * @return
      */
     boolean existsDictionary(String type, String code);
+
+    /**
+     * 查找指定类型的字典
+     *
+     * @param type
+     * @return
+     */
+    List<Dictionary> findDictionariesByType(String type);
 }

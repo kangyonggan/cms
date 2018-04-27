@@ -2,6 +2,7 @@ package com.kangyonggan.cms.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.cms.constants.MonitorType;
+import com.kangyonggan.cms.constants.YesNo;
 import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
 import com.kangyonggan.cms.model.Dictionary;
@@ -84,5 +85,15 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
         dictionary.setType(type);
         dictionary.setCode(code);
         return super.exists(dictionary);
+    }
+
+    @Override
+    @Log
+    public List<Dictionary> findDictionariesByType(String type) {
+        Example example = new Example(Dictionary.class);
+        example.createCriteria().andEqualTo("isDeleted", YesNo.NO.getValue()).andEqualTo("type", type);
+
+        example.setOrderByClause("sort asc");
+        return myMapper.selectByExample(example);
     }
 }

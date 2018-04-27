@@ -3,11 +3,7 @@
 
 <@c.form class="col-xs-12 fa-border radius-base">
     <@c.input name="query.app" label="应用名称" inline=true/>
-    <@c.select name="query.type" label="操作类型" inline=true>
-        <option value="CREATE">新增</option>
-        <option value="UPDATE">更新</option>
-        <option value="DELETE">删除</option>
-    </@c.select>
+    <@c.select name="query.type" label="操作类型" inline=true dict_type="MONITOR_TYPE"/>
     <@c.input name="query.beginDate" label="调用开始日期" inline=true class="date-picker" readonly=true/>
     <@c.input name="query.endDate" label="调用结束日期" inline=true class="date-picker" readonly=true/>
 
@@ -20,15 +16,7 @@
 <@c.table url="${baseUrl}/list">
     <@c.th field="app" title="应用名称"/>
     <@c.th field="type" title="操作类型" render=true class="hidden-sm hidden-xs">
-        {{if value=="CREATE"}}
-            新增
-        {{else if value=="UPDATE"}}
-            更新
-        {{else if value=="DELETED"}}
-            删除
-        {{else}}
-            value
-        {{/if}}
+        <@c.thFormat type="dict" dict_type="MONITOR_TYPE"/>
     </@c.th>
     <@c.th field="description" title="描述" sortable=true />
     <@c.th field="hasReturnValue" title="有无返回值" sortable=true render=true class="hidden-sm hidden-xs">

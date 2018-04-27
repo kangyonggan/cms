@@ -43,12 +43,12 @@ ${title}
 </#macro>
 
 <#--表格的格式化-->
-<#macro thFormat type="" enum_key="" show_code=true>
+<#macro thFormat type="" enum_key="" dict_type="" show_code=true>
     <#if type=="enum">
         <#local uuid=app('uuid', 'func')/>
     <script>
         var obj = {};
-            <#assign map=enum('map', enum_key)/>
+            <#local map=enum('map', enum_key)/>
             <#if map?? && map?size gt 0>
                 <#list map?keys as key>
                 obj["${key}"] = "${map[key]}";
@@ -61,6 +61,26 @@ ${title}
                 }
             }
             return value;
+        });
+    </script>
+    {{value | ${uuid}}}
+    <#elseif type=="dict">
+        <#local uuid=app('uuid', 'func')/>
+    <script>
+        var arr = [];
+            <#local list=dict('list', dict_type)/>
+            <#if list?? && list?size gt 0>
+                <#list list as dict>
+                arr.push({"code": "${dict.code}", "value": "${dict.value}"});
+                </#list>
+            </#if>
+        template.helper('${uuid}', function (code) {
+            for (var i in arr) {
+                if (arr[i].code == code) {
+                    return arr[i].value<#if show_code> + "[" + code + "]"</#if>;
+                }
+            }
+            return code;
         });
     </script>
     {{value | ${uuid}}}

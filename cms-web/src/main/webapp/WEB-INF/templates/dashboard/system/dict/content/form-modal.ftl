@@ -4,6 +4,9 @@
 
 <@override name="modal-body">
     <@c.form id="modal-form" action="${ctx}/dashboard/system/dict/content/${isEdit?string('update', 'save')}">
+    <#if isEdit>
+        <input type="hidden" name="id" value="${dictionary.id}"/>
+    </#if>
     <input type="hidden" id="old-type" value="${dictionary.type!''}"/>
         <@c.select name="type" value="${dictionary.type!''}" label="字典类型" required=true>
             <#list dictionaryTypes as dictionaryType>

@@ -32,7 +32,8 @@
 </#macro>
 
 <#--下拉选择框-->
-<#macro select name label value="" inline=false class="" placeholder="" readonly=false type="single" required=false enum_key="" show_code=true>
+<#macro select name label value="" inline=false class="" placeholder=""
+    readonly=false type="single" required=false enum_key="" dict_type="" show_code=true>
 <div class="form-group <#if inline>col-lg-4 col-md-6 col-xs-12</#if>">
     <div class="app-label nowrap <#if inline>col-md-5 col-xs-12<#else>col-md-3</#if>">
         <label class="<#if required>required</#if>">${label}</label>
@@ -42,11 +43,20 @@
             <option value="">${(placeholder=='')?string('请选择${label}', placeholder)}</option>
 
             <#if enum_key != "">
-                <#assign map=enum('map', enum_key)/>
+                <#local map=enum('map', enum_key)/>
                 <#if map?? && map?size gt 0>
                     <#list map?keys as key>
                         <option value="${key}" <#if value==key>selected</#if>>
                         ${map[key]}<#if show_code>[${key}]</#if>
+                        </option>
+                    </#list>
+                </#if>
+            <#elseif dict_type != "">
+                <#local list=dict('list', dict_type)/>
+                <#if list?? && list?size gt 0>
+                    <#list list as dict>
+                        <option value="${dict.code}" <#if value==dict.code>selected</#if>>
+                        ${dict.value}<#if show_code>[${dict.code}]</#if>
                         </option>
                     </#list>
                 </#if>
