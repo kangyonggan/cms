@@ -12,11 +12,11 @@
         <@c.tab_contents>
             <@c.tab_content id="edit-basic" active=true>
                 <@c.input name="username" value="${user.username}" label="用户名" readonly=true/>
-                <@c.input name="realname" value="${user.realname}" label="真实姓名" required=true/>
+                <@c.input name="realname" value="${user.realname}" label="真实姓名" required=true valid={"rangelength": "[1, 32]"}/>
             </@c.tab_content>
             <@c.tab_content id="edit-password">
-                <@c.input name="password" type="password" label="新密码" required=true/>
-                <@c.input name="rePassword" type="password" label="确认密码" required=true/>
+                <@c.input name="password" type="password" label="新密码" required=true valid={"isPassword": "true"}/>
+                <@c.input name="rePassword" type="password" label="确认密码" required=true valid={"equalTo": "#password"}/>
             </@c.tab_content>
         </@c.tab_contents>
     </@c.tab_panel>

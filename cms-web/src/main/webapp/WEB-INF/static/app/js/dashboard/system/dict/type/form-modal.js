@@ -6,8 +6,6 @@ $(function () {
     $form.validate({
         rules: {
             type: {
-                required: true,
-                rangelength: [1, 20],
                 remote: {
                     url: ctx + "/validate/dictType",
                     type: 'post',
@@ -20,10 +18,6 @@ $(function () {
                         }
                     }
                 }
-            },
-            name: {
-                required: true,
-                rangelength: [1, 32]
             }
         },
         submitHandler: function (form, event) {

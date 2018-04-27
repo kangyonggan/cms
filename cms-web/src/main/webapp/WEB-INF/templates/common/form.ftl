@@ -13,15 +13,18 @@
 </#macro>
 
 <#--输入框-->
-<#macro input name label value="" inline=false class="" placeholder="" readonly=false type="text" required=false>
+<#macro input name label value="" inline=false class="" placeholder="" readonly=false type="text" required=false valid={}>
 <div class="form-group <#if inline>col-lg-4 col-md-6 col-xs-12</#if>">
     <div class="app-label nowrap <#if inline>col-md-5 col-xs-12<#else>col-md-3</#if>">
         <label class="<#if required>required</#if>">${label}</label>
     </div>
     <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
         <input type="${type}" id="${name}" <#if readonly>readonly</#if> name="${name}"
+            <#list valid?keys as nm>
+            ${nm}="${valid[nm]}"
+            </#list>
                value="${value}" class="form-control ${class} <#if readonly>readonly</#if>"
-               placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}"/>
+               placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>/>
     </div>
     <#if class?contains("date-picker")>
         <script>

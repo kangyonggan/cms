@@ -15,9 +15,9 @@
             </#list>
         </@c.select>
     <input type="hidden" id="old-code" value="${dictionary.code!''}"/>
-        <@c.input name="code" value="${dictionary.code!''}" label="字典代码" required=true/>
-        <@c.input name="value" value="${dictionary.value!''}" label="字典的值" required=true/>
-        <@c.input name="sort" value="${dictionary.sort!'0'}" label="字典排序" required=true/>
+        <@c.input name="code" value="${dictionary.code!''}" label="字典代码" required=true valid={"rangelength": "[1, 64]"}/>
+        <@c.input name="value" value="${dictionary.value!''}" label="字典的值" required=true valid={"rangelength": "[1, 256]"}/>
+        <@c.input name="sort" value="${dictionary.sort!'0'}" label="字典排序" required=true valid={"range": "[0, 9999]"}/>
     </@c.form>
 </@override>
 

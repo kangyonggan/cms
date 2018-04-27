@@ -6,8 +6,6 @@ $(function () {
     $form.validate({
         rules: {
             code: {
-                required: true,
-                isMenuCode: true,
                 remote: {
                     url: "/validate/menu",
                     type: 'post',
@@ -20,18 +18,6 @@ $(function () {
                         }
                     }
                 }
-            },
-            name: {
-                required: true,
-                rangelength: [1, 32]
-            },
-            url: {
-                required: true,
-                isMenuUrl: true
-            },
-            sort: {
-                required: true,
-                range: [0, 100]
             }
         },
         submitHandler: function (form, event) {

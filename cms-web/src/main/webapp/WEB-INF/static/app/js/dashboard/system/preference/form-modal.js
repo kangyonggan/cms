@@ -4,12 +4,6 @@ $(function () {
     var $btn = $modal.find("button[data-type=submit]");
 
     $form.validate({
-        rules: {
-            value: {
-                required: true,
-                rangelength: [1, 256]
-            }
-        },
         submitHandler: function (form, event) {
             event.preventDefault();
             $btn.button('loading');

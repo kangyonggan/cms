@@ -5,9 +5,8 @@
 <@override name="modal-body">
     <@c.form id="modal-form" action="${ctx}/dashboard/system/dict/type/${isEdit?string('update', 'save')}">
     <input type="hidden" id="old-type" value="${dictionaryType.type!''}"/>
-        <@c.input name="type" value="${dictionaryType.type!''}" label="字典类型" required=true/>
-        <@c.input name="name" value="${dictionaryType.name!''}" label="类型名称" required=true/>
-
+        <@c.input name="type" value="${dictionaryType.type!''}" label="字典类型" required=true valid={"rangelength": "[1, 20]"}/>
+        <@c.input name="name" value="${dictionaryType.name!''}" label="类型名称" required=true valid={"rangelength": "[1, 32]"}/>
     </@c.form>
 </@override>
 

@@ -6,8 +6,6 @@ $(function () {
     $form.validate({
         rules: {
             code: {
-                required: true,
-                isRoleCode: true,
                 remote: {
                     url: ctx + "/validate/role",
                     type: 'post',
@@ -20,10 +18,6 @@ $(function () {
                         }
                     }
                 }
-            },
-            name: {
-                required: true,
-                rangelength: [1, 32]
             }
         },
         submitHandler: function (form, event) {

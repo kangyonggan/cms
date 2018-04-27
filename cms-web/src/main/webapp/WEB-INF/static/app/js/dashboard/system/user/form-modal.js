@@ -6,8 +6,6 @@ $(function () {
     $form.validate({
         rules: {
             username: {
-                required: true,
-                isUsername: true,
                 remote: {
                     url: ctx + "/validate/user",
                     type: 'post',
@@ -20,18 +18,6 @@ $(function () {
                         }
                     }
                 }
-            },
-            realname: {
-                required: true,
-                rangelength: [1, 32]
-            },
-            password: {
-                required: true,
-                isPassword: true
-            },
-            rePassword: {
-                required: true,
-                equalTo: "#password"
             }
         },
         submitHandler: function (form, event) {
