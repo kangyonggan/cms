@@ -122,25 +122,6 @@ $(function () {
         $(this).find(".modal-body").html("正在加载...");
         $(this).removeData('bs.modal');
     });
-
-    // 切换皮肤
-    var skins = {"#438EB9": "no-skin", "#222A2D": "skin-1", "#C6487E": "skin-2", "#D0D0D0": "skin-3"};
-    $(".dropdown-colorpicker .colorpick-btn").click(function () {
-        var color = $(this).data("color");
-        var skin = skins[color];
-        $.get(ctx + "/dashboard/preference/update?type=ace&name=skin&value=" + skin, function (data, status) {
-            if (status == "success") {
-                data = eval('(' + data + ')');
-                if ("0000" == data.respCo) {
-                    Message.success(data.respMsg);
-                } else {
-                    Message.error(data.respMsg);
-                }
-            } else {
-                Message.error("服务器内部错误，请稍后再试。");
-            }
-        });
-    });
 });
 
 // 提示信息
