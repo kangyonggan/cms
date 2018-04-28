@@ -81,7 +81,7 @@
         <pegdown.version>1.6.0</pegdown.version>
         <poi.version>3.12</poi.version>
         <xstream.version>1.4.9</xstream.version>
-        <extra.version>3.2.0</extra.version>
+        <extra.version>3.2.1</extra.version>
     </properties>
 
     <build>
