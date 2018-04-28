@@ -26,7 +26,11 @@
                 <ul class="nav ace-nav">
                     <li>
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle" id="user-info-toggle">
-                            <img class="nav-user-photo" id="userAvatar" src="${ctx}/static/ace/dist/avatars/avatar5.png">
+                            <#if _user.avatar != ''>
+                                <img class="nav-user-photo" id="userAvatar" src="${ctx}/${_user.avatar}">
+                            <#else>
+                                <img class="nav-user-photo" id="userAvatar" src="${ctx}/static/ace/dist/avatars/avatar5.png">
+                            </#if>
                             <span class="user-info">
                             <small>欢迎,</small>
                             <span id="navFullname">${_user.realname!''}</span>

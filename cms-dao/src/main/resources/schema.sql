@@ -24,6 +24,8 @@ CREATE TABLE tb_user
   COMMENT '密码',
   salt         VARCHAR(64)                           NOT NULL
   COMMENT '密码盐',
+  avatar       VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '头像',
   is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
   created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP

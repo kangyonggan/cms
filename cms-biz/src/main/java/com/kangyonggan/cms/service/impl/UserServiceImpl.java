@@ -88,6 +88,11 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     public void updateUserByUsername(User user) {
         Example example = new Example(User.class);
         example.createCriteria().andEqualTo("username", user.getUsername());
+
+        if (StringUtils.isNotEmpty(user.getPassword())) {
+            entryptPassword(user);
+        }
+
         myMapper.updateByExampleSelective(user, example);
     }
 

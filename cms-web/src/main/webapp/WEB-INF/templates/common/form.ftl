@@ -3,7 +3,7 @@
 <#--表单-->
 <#macro form action="" id="form" action="" method="post" class="" multipart=false>
 <form method="${method}" class="form-horizontal ${class}"
-      <#if multipart>enctype="${multipart/form-data}"</#if>
+      <#if multipart>enctype="multipart/form-data"</#if>
       <#if action!=''>action="${action}"</#if>
       <#if id!=''>id="${id}"</#if>
 >
