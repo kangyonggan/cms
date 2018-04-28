@@ -13,10 +13,12 @@
         <@c.link name="查询" class="btn btn-sm btn-purple" icon="fa-search" type="submit" table_id="table"/>
         <@c.link name="清除" class="btn btn-sm btn-danger" icon="fa-undo" type="reset"/>
         <@c.link name="新增字典" class="btn btn-sm btn-skin" href="${baseUrl}/create" modal="myModal"/>
+        <@c.link name="批量删除" class="btn btn-sm btn-danger" click="deleteBatch"/>
     </@c.form_actions>
 </@c.form>
 
 <@c.table url="${baseUrl}/list">
+    <@c.th checkbox=true/>
     <@c.th field="id" title="ID" class="hidden-sm hidden-xs"/>
     <@c.th field="type" title="字典类型" />
     <@c.th field="code" title="字典代码" sortable=true/>
@@ -32,3 +34,5 @@
         <#include "operation.ftl"/>
     </@c.th>
 </@c.table>
+
+<script src="${ctx}/static/app/js/dashboard/system/dict/content/list.js"></script>

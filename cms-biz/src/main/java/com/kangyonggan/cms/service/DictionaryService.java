@@ -64,4 +64,12 @@ public interface DictionaryService {
      * @return
      */
     List<Dictionary> findDictionariesByType(String type);
+
+    /**
+     * 批量删除
+     *
+     * @param ids
+     */
+    void deleteDictionaries(String ids);
+
 }

@@ -5,7 +5,7 @@
 <div class="form-table-space"></div>
 <table id="${id}" data-toggle="table" data-url="${url}" data-pagination="${pagination?string}"
        data-side-pagination="server" data-undefined-text="${undefined_text}" data-striped="true"
-       data-form-id="${form_id}">
+       data-form-id="${form_id}" data-click-to-select="true">
     <thead>
     <tr>
         <#nested/>
@@ -16,10 +16,13 @@
 </#macro>
 
 <#--表格的行-->
-<#macro th title field="" class="" sortable=true render=false>
+<#macro th title="" field="" class="" sortable=true render=false checkbox=false>
 <th data-field="${field}" class="${class}"
     <#if field!=''>
     data-sortable="${sortable?c}"
+    </#if>
+    <#if checkbox>
+        data-checkbox="true"
     </#if>
     <#if render>
         <#local uuid=app('uuid', 'th')/>

@@ -8,7 +8,7 @@
 </#macro>
 
 <#--超链接-->
-<#macro link name id="" href="javascript:" icon="" class="" drop=false type="" table_id="" modal="" backdrop="static" type="" title="">
+<#macro link name id="" href="javascript:" icon="" class="" drop=false type="" table_id="" modal="" backdrop="static" type="" title="" click="">
 <#if drop>
 <li>
 </#if>
@@ -18,6 +18,9 @@
     </#if>
    <#if table_id != ''>
         data-table-id="${table_id}"
+   </#if>
+   <#if click != ''>
+        onclick="${click}(this)"
    </#if>
    <#if modal != ''>
    data-toggle="modal"

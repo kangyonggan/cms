@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class DictionaryServiceImpl extends BaseService<Dictionary> implements DictionaryService {
+
     @Override
     public List<Dictionary> searchDictionaries(Params params) {
         Example example = new Example(Dictionary.class);
@@ -95,5 +97,20 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
 
         example.setOrderByClause("sort asc");
         return myMapper.selectByExample(example);
+    }
+
+    @Override
+    @Log
+    @Monitor(type = MonitorType.DELETE, description = "批量删除字典:${ids}")
+    public void deleteDictionaries(String ids) {
+        Dictionary dictionary = new Dictionary();
+        dictionary.setIsDeleted(YesNo.YES.getValue());
+        String[] arr = ids.split(",");
+
+        Example example = new Example(Dictionary.class);
+        example.createCriteria().andIn("id", Arrays.asList(arr));
+
+        myMapper.updateByExampleSelective(dictionary, example);
+
     }
 }

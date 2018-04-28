@@ -155,6 +155,20 @@ public class DashboardSystemDictContentController extends BaseController {
     }
 
     /**
+     * 批量删除
+     *
+     * @param ids
+     * @return
+     */
+    @RequestMapping(value = "deleted", method = RequestMethod.GET)
+    @RequiresPermissions("SYSTEM_DICT_CONTENT")
+    @ResponseBody
+    public Response deleted(@RequestParam("ids") String ids) {
+        dictionaryService.deleteDictionaries(ids);
+        return Response.getSuccessResponse();
+    }
+
+    /**
      * 物理删除
      *
      * @param id

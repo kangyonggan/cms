@@ -3,6 +3,8 @@
     <@c.drop_group>
         {{if row.isDeleted==1}}
             <@c.link name="彻底删除" drop=true href="${baseUrl}/{{row.id}}/remove" type="confirm" title="彻底删除字典"/>
+        {{else}}
+            <@c.link name="删除" drop=true href="${baseUrl}/{{row.id}}/deleted/1" type="confirm" title="删除字典"/>
         {{/if}}
     </@c.drop_group>
 </@c.link_group>
