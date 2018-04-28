@@ -1,13 +1,13 @@
 package com.kangyonggan.cms.constants;
 
-import com.kangyonggan.cms.annotation.Enum;
+import com.kangyonggan.extra.core.annotation.Enum;
 import lombok.Getter;
 
 /**
  * @author kangyonggan
  * @date 4/23/18
  */
-@Enum(code = "type")
+@Enum(code = "type", name = "name", description = "偏好类型枚举")
 public enum PreferenceType {
 
     /**

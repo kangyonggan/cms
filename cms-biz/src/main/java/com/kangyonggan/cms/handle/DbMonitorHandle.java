@@ -2,6 +2,7 @@ package com.kangyonggan.cms.handle;
 
 import com.kangyonggan.cms.service.MonitorService;
 import com.kangyonggan.cms.util.SpringUtils;
+import com.kangyonggan.extra.core.annotation.Handle;
 import com.kangyonggan.extra.core.handle.MonitorHandle;
 import com.kangyonggan.extra.core.model.MonitorInfo;
 import lombok.extern.log4j.Log4j2;
@@ -10,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
  * @author kangyonggan
  * @date 3/30/18
  */
+@Handle(type = Handle.Type.MONITOR)
 @Log4j2
 public class DbMonitorHandle implements MonitorHandle {
 

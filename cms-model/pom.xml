@@ -32,5 +32,9 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.kangyonggan</groupId>
+            <artifactId>extra-core</artifactId>
+        </dependency>
     </dependencies>
 </project>

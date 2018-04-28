@@ -1,6 +1,7 @@
 package com.kangyonggan.cms.handle;
 
 import com.alibaba.fastjson.JSON;
+import com.kangyonggan.extra.core.annotation.Handle;
 import com.kangyonggan.extra.core.handle.LogHandle;
 import lombok.extern.log4j.Log4j2;
 
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
  * @date 2017/11/5 0005
  */
 @Log4j2
+@Handle(type = Handle.Type.LOG)
 public class Log4j2LogHandle implements LogHandle {
 
     private String packageName;

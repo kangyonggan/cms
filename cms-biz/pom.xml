@@ -110,10 +110,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.kangyonggan</groupId>
-            <artifactId>extra-core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
