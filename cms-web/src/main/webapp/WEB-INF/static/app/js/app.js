@@ -42,6 +42,8 @@ $(function () {
 
         $form.find("input").val("");
         $form.find("select").val("");
+        $form.find(".chosen-single span").text("");
+        $form.find(".chosen-single abbr").remove();
         return false;
     });
 

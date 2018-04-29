@@ -46,7 +46,7 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
         <select id="${id}" name="${name}"
                 class="form-control <#if chosen>chosen-select</#if> ${class} <#if readonly>readonly</#if>">
 
-            <option value="">${(placeholder=='')?string('请选择${label}', placeholder)}</option>
+            <option value=""></option>
 
             <#if enum_key != "">
                 <#local map=enum('map', enum_key)/>
@@ -74,7 +74,8 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
                 $('#${id}').chosen({
                     allow_single_deselect: true,
                     disable_search_threshold: 10,
-                    no_results_text: "没有匹配的结果"
+                    no_results_text: "没有匹配的结果",
+                    placeholder_text: "请选择一项"
                 });
             </script>
         </#if>
