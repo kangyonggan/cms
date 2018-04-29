@@ -1,6 +1,7 @@
 package com.kangyonggan.cms.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.kangyonggan.cms.constants.MonitorType;
 import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
 import com.kangyonggan.cms.model.Preference;
@@ -8,6 +9,7 @@ import com.kangyonggan.cms.service.PreferenceService;
 import com.kangyonggan.cms.util.ShiroUtils;
 import com.kangyonggan.cms.util.StringUtil;
 import com.kangyonggan.extra.core.annotation.Log;
+import com.kangyonggan.extra.core.annotation.Monitor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -73,18 +75,21 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新偏好type:${preference.type},name:${preference.name},value:${preference.value}")
     public void updatePreference(Preference preference) {
         myMapper.updateByPrimaryKeySelective(preference);
     }
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "删除偏好id:${id}")
     public void deletePreferenceById(Long id) {
         myMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     @Log
+    @Monitor(type = MonitorType.UPDATE, description = "更新或插入偏好type:${type}，names=${names},value:${value}")
     public void updateOrSavePreferences(String type, String names, String value) {
         String[] nameArr = names.split(",");
         for (String name : nameArr) {
@@ -107,6 +112,7 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
 
     @Override
     @Log
+    @Monitor(type = MonitorType.DELETE, description = "批量删除偏好ids:${ids}")
     public void deletePreferenceByIds(String ids) {
         Example example = new Example(Preference.class);
         String[] arr = ids.split(",");
