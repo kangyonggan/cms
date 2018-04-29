@@ -38,7 +38,7 @@ public class DashboardSystemRoleController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_ROLE")
     public String index() {
         return getPathList();
