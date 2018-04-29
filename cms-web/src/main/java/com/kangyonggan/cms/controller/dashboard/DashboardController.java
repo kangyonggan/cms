@@ -1,13 +1,10 @@
 package com.kangyonggan.cms.controller.dashboard;
 
-import com.kangyonggan.cms.constants.PreferenceType;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.ShiroUser;
 import com.kangyonggan.cms.model.Menu;
-import com.kangyonggan.cms.model.Preference;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.MenuService;
-import com.kangyonggan.cms.service.PreferenceService;
 import com.kangyonggan.cms.service.UserService;
 import com.kangyonggan.cms.util.ShiroUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -33,9 +30,6 @@ public class DashboardController extends BaseController {
     @Autowired
     private MenuService menuService;
 
-    @Autowired
-    private PreferenceService preferenceService;
-
     /**
      * 工作台模板
      *
@@ -47,12 +41,9 @@ public class DashboardController extends BaseController {
         ShiroUser shiroUser = ShiroUtils.getShiroUser();
         User user = userService.findUserByUsername(shiroUser.getUsername());
         List<Menu> menus = menuService.findMenusByUsername(shiroUser.getUsername());
-        List<Preference> preferences = preferenceService.findPreferencesByTypeAndUsername(
-                PreferenceType.ACE.getType(), ShiroUtils.getShiroUsername());
 
         model.addAttribute("_user", user);
         model.addAttribute("_menus", menus);
-        model.addAttribute("_preferences", preferences);
         return getPathRoot() + "/layout";
     }
 

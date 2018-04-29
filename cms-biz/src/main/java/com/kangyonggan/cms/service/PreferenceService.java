@@ -12,15 +12,6 @@ import java.util.List;
 public interface PreferenceService {
 
     /**
-     * 根据偏好类型和用户名查找偏好
-     *
-     * @param type
-     * @param username
-     * @return
-     */
-    List<Preference> findPreferencesByTypeAndUsername(String type, String username);
-
-    /**
      * 根据偏好类型、偏好名称和用户名查找偏好
      *
      * @param type

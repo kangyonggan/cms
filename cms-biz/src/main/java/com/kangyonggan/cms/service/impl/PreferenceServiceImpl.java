@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,20 +21,6 @@ import java.util.List;
  */
 @Service
 public class PreferenceServiceImpl extends BaseService<Preference> implements PreferenceService {
-
-    @Override
-    @Log
-    public List<Preference> findPreferencesByTypeAndUsername(String type, String username) {
-        if (StringUtil.hasEmpty(type, username)) {
-            return new ArrayList<>(0);
-        }
-
-        Preference preference = new Preference();
-        preference.setType(type);
-        preference.setUsername(username);
-
-        return myMapper.select(preference);
-    }
 
     @Override
     @Log
