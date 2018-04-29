@@ -72,9 +72,24 @@
     <mvc:resources mapping="/upload/**" location="/WEB-INF/upload/" cache-period="31556926"/>
 
     <!-- 定义无需Controller的url<->view直接映射 -->
-    <!--<mvc:view-controller path="/error/403" view-name="/error/403"/>-->
-    <!--<mvc:view-controller path="/error/404" view-name="/error/404"/>-->
-    <!--<mvc:view-controller path="/error/500" view-name="/error/500"/>-->
+    <mvc:view-controller path="/404" view-name="/404"/>
+    <mvc:view-controller path="/dashboard/404" view-name="/404"/>
+
+    <bean id="exceptionResolver" class="com.kangyonggan.cms.exception.CustomSimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">500</prop>
+                <prop key=".FileUploadException">upload-error</prop>
+                <prop key=".MaxUploadSizeExceededException">upload-max-error</prop>
+            </props>
+        </property>
+        <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+        <property name="warnLogCategory" value="WARN"/>
+        <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
+        <property name="defaultErrorView" value="500"/>
+        <!-- 默认HTTP状态码 -->
+        <property name="defaultStatusCode" value="500"/>
+    </bean>
 
     <!--请求拦截器-->
     <mvc:interceptors>
