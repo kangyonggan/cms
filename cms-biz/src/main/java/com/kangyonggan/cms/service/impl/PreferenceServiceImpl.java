@@ -99,20 +99,23 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
 
     @Override
     @Log
-    public void updateOrSavePreference(String type, String name, String value) {
-        Preference preference = new Preference();
-        preference.setValue(value);
+    public void updateOrSavePreferences(String type, String names, String value) {
+        String[] nameArr = names.split(",");
+        for (String name : nameArr) {
+            Preference preference = new Preference();
+            preference.setValue(value);
 
-        Example example = new Example(Preference.class);
-        example.createCriteria().andEqualTo("type", type).andEqualTo("name", name);
-        int count = myMapper.selectCountByExample(example);
-        if (count > 0) {
-            myMapper.updateByExampleSelective(preference, example);
-        } else {
-            preference.setType(type);
-            preference.setName(name);
-            preference.setUsername(ShiroUtils.getShiroUsername());
-            myMapper.insertSelective(preference);
+            Example example = new Example(Preference.class);
+            example.createCriteria().andEqualTo("type", type).andEqualTo("name", name);
+            int count = myMapper.selectCountByExample(example);
+            if (count > 0) {
+                myMapper.updateByExampleSelective(preference, example);
+            } else {
+                preference.setType(type);
+                preference.setName(name);
+                preference.setUsername(ShiroUtils.getShiroUsername());
+                myMapper.insertSelective(preference);
+            }
         }
     }
 }

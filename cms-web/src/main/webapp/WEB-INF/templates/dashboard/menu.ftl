@@ -1,4 +1,4 @@
-<li>
+<li class="${sideBarHover} ${sideBarHighlight}">
     <a <#if menu.leaf?? && menu.leaf?size gt 0>class="dropdown-toggle" href="javascript:"
        <#else>href="#${menu.url}"</#if> data-url="${menu.url}">
         <#if menu.icon != ''>

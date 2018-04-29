@@ -1,5 +1,5 @@
 <#if !noSidebar??>
-<div id="sidebar" class="sidebar responsive ${app('preference', 'ace', 'fixed-sidebar')}">
+<div id="sidebar" class="sidebar responsive ${app('preference', 'ace', 'fixed-sidebar')} ${(app('preference', 'ace', 'compact')=='true')?string('compact', '')}">
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
             <button class="btn btn-success">
@@ -31,8 +31,10 @@
     </div>
 
     <ul class="nav nav-list">
+        <#assign sideBarHover=(app('preference', 'ace', 'hover')=='true')?string('hover', '')/>
+        <#assign sideBarHighlight=(app('preference', 'ace', 'highlight')=='true')?string('highlight', '')/>
         <#if _menus?size gt 0>
-            <li>
+            <li class="${sideBarHover} ${sideBarHighlight}">
                 <a data-url="index" href="${ctx}/dashboard#index">
                     <i class="menu-icon fa fa-dashboard"></i>
                     <span class="menu-text">工作台</span>

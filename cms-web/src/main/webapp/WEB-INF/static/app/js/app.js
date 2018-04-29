@@ -77,8 +77,10 @@ function formSubmit($form, $btn, callback) {
         dataType: 'json',
         success: function (response) {
             if (response.respCo == '0000') {
-                callback(response);
                 Message.success(response.respMsg);
+                if (callback) {
+                    callback(response);
+                }
             } else {
                 Message.error(response.respMsg);
             }

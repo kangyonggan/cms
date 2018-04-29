@@ -25,16 +25,16 @@ public class DashboardPreferenceController extends BaseController {
      * 更新偏好
      *
      * @param type
-     * @param name
+     * @param names
      * @param value
      * @return
      */
     @RequestMapping(value = "update", method = RequestMethod.GET)
     @RequiresPermissions("DASHBOARD")
     public Response update(@RequestParam("type") String type,
-                           @RequestParam("name") String name,
+                           @RequestParam("names") String names,
                            @RequestParam("value") String value) {
-        preferenceService.updateOrSavePreference(type, name, value);
+        preferenceService.updateOrSavePreferences(type, names, value);
         return Response.getSuccessResponse();
     }
 

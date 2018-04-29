@@ -64,8 +64,8 @@ public interface PreferenceService {
      * 更新或者保存偏好
      *
      * @param type
-     * @param name
+     * @param names
      * @param value
      */
-    void updateOrSavePreference(String type, String name, String value);
+    void updateOrSavePreferences(String type, String names, String value);
 }

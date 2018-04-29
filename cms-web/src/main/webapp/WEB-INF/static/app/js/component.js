@@ -241,3 +241,32 @@ function updateState(hash) {
     updateMenuActive(hash);
     updateTitle(hash);
 }
+
+/**
+ * 更新偏好
+ *
+ * @param type
+ * @param names
+ * @param value
+ * @param callback
+ */
+function updatePreference(type, names, value, callback) {
+    $.get(ctx + "/dashboard/preference/update", {
+        type: type,
+        names: names,
+        value: value
+    }, function (data, status) {
+        if (status == "success") {
+            data = eval('(' + data + ')');
+            if ("0000" == data.respCo) {
+                if (callback) {
+                    callback();
+                }
+            } else {
+                Message.error(data.respMsg);
+            }
+        } else {
+            Message.error("服务器内部错误，请稍后再试。");
+        }
+    });
+}

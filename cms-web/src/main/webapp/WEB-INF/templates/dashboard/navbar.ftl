@@ -1,4 +1,4 @@
-<div id="navbar" class="navbar navbar-default ${app('preference', 'ace', 'fixed-navbar')}">
+<div id="navbar" class="navbar navbar-default">
     <div class="navbar-container" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
             <span class="sr-only">Toggle sidebar</span>
