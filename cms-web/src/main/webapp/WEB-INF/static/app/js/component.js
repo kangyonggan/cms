@@ -122,6 +122,17 @@ $(function () {
         $(this).find(".modal-body").html("正在加载...");
         $(this).removeData('bs.modal');
     });
+
+    // 让chosen select支持响应式
+    $(window).on('resize.chosen', function () {
+        var w = $('.chosen-select').parent().width();
+        $('.chosen-select').siblings('.chosen-container').css({'width': w});
+    }).triggerHandler('resize.chosen');
+
+    // 让chosen select支持触摸屏
+    if(!ace.vars['touch']) {
+        $('.chosen-select').chosen();
+    }
 });
 
 // 提示信息
