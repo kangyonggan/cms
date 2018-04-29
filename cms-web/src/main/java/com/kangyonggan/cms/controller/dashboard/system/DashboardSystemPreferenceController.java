@@ -102,4 +102,18 @@ public class DashboardSystemPreferenceController extends BaseController {
         return Response.getSuccessResponse();
     }
 
+    /**
+     * 批量删除
+     *
+     * @param ids
+     * @return
+     */
+    @RequestMapping(value = "deleted", method = RequestMethod.GET)
+    @RequiresPermissions("SYSTEM_PREFERENCE")
+    @ResponseBody
+    public Response deleted(@RequestParam("ids") String ids) {
+        preferenceService.deletePreferenceByIds(ids);
+        return Response.getSuccessResponse();
+    }
+
 }

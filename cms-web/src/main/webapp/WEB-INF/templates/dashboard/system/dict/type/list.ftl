@@ -8,7 +8,7 @@
     <@c.input name="query.endDate" label="创建结束日期" inline=true class="date-picker" readonly=true/>
     <@c.form_actions background=false>
         <@c.link name="查询" class="btn btn-sm btn-purple" icon="fa-search" type="submit" table_id="table"/>
-        <@c.link name="清除" class="btn btn-sm btn-danger" icon="fa-undo" type="reset"/>
+        <@c.link name="清除" class="btn btn-sm btn-warning" icon="fa-undo" type="reset"/>
         <@c.link name="新增字典类型" class="btn btn-sm btn-skin" href="${baseUrl}/create" modal="myModal"/>
     </@c.form_actions>
 </@c.form>

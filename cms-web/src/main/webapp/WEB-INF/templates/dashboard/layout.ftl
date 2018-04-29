@@ -47,10 +47,10 @@
     <![endif]-->
 <@block name="app-style"/>
 </head>
-<body class="${app('preference', 'ace', 'skin', 'no-skin')}">
+<body class="${app('preference', 'ace', 'skin', 'skin-1')}">
 <#include "navbar.ftl"/>
 
-<div class="main-container" id="main-container">
+<div class="main-container ${(app('preference', 'ace', 'container')=='true')?string('container', '')}" id="main-container">
 
 <#include "sidebar.ftl"/>
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -117,5 +118,15 @@ public class PreferenceServiceImpl extends BaseService<Preference> implements Pr
                 myMapper.insertSelective(preference);
             }
         }
+    }
+
+    @Override
+    @Log
+    public void deletePreferenceByIds(String ids) {
+        Example example = new Example(Preference.class);
+        String[] arr = ids.split(",");
+        example.createCriteria().andIn("id", Arrays.asList(arr));
+
+        myMapper.deleteByExample(example);
     }
 }

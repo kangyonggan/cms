@@ -80,7 +80,7 @@
         // 初始化breadcrumbs
         ace.settings.breadcrumbs_fixed(null, ${app('preference', 'ace', 'fixed-breadcrumbs', "false")}, false);
         // 初始化container
-        ace.settings.main_container_fixed(null, ${app('preference', 'ace', 'container', "false")}, false);
+        document.getElementById("ace-settings-container").checked = ${app('preference', 'ace', 'container', "false")};
         // 初始化hover
         document.getElementById("ace-settings-hover").checked = ${app('preference', 'ace', 'hover', "false")};
         // 初始化compact

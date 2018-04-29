@@ -68,4 +68,11 @@ public interface PreferenceService {
      * @param value
      */
     void updateOrSavePreferences(String type, String names, String value);
+
+    /**
+     * 批量删除
+     *
+     * @param ids
+     */
+    void deletePreferenceByIds(String ids);
 }

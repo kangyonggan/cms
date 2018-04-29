@@ -7,11 +7,13 @@
     <@c.input name="query.name" label="偏好名称" inline=true/>
     <@c.form_actions background=false>
         <@c.link name="查询" class="btn btn-sm btn-purple" icon="fa-search" type="submit" table_id="table"/>
-        <@c.link name="清除" class="btn btn-sm btn-danger" icon="fa-undo" type="reset"/>
+        <@c.link name="清除" class="btn btn-sm btn-warning" icon="fa-undo" type="reset"/>
+        <@c.link name="批量删除" class="btn btn-sm btn-danger" click="deleteBatch"/>
     </@c.form_actions>
 </@c.form>
 
 <@c.table url="${baseUrl}/list">
+    <@c.th checkbox=true/>
     <@c.th field="type" title="偏好类型" render=true>
         <@c.thFormat type="enum" enum_key="preferenceType"/>
     </@c.th>
@@ -25,3 +27,5 @@
         <#include "operation.ftl"/>
     </@c.th>
 </@c.table>
+
+<script src="${ctx}/static/app/js/dashboard/system/preference/list.js"></script>

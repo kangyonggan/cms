@@ -9,7 +9,7 @@
 
     <@c.form_actions background=false>
         <@c.link name="查询" class="btn btn-sm btn-purple" icon="fa-search" type="submit" table_id="table"/>
-        <@c.link name="清除" class="btn btn-sm btn-danger" icon="fa-undo" type="reset"/>
+        <@c.link name="清除" class="btn btn-sm btn-warning" icon="fa-undo" type="reset"/>
         <@c.link name="新增用户" class="btn btn-sm btn-skin" href="${baseUrl}/create" modal="myModal"/>
     </@c.form_actions>
 </@c.form>
