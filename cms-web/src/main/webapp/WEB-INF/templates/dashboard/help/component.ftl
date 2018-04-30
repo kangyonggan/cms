@@ -5,11 +5,11 @@
     <@c.accordion_section title="按钮">
         <#include "button.ftl"/>
     </@c.accordion_section>
+    <@c.accordion_section title="表单">
+        <#include "form.ftl"/>
+    </@c.accordion_section>
     <@c.accordion_section title="折叠筐">
     折叠筐
-    </@c.accordion_section>
-    <@c.accordion_section title="表单">
-    表单
     </@c.accordion_section>
     <@c.accordion_section title="选项卡">
     选项卡
