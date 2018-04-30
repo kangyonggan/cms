@@ -118,6 +118,9 @@ $(function () {
 
     // 关闭时清除模态框的数据
     $(document).on('hidden.bs.modal', '.modal', function () {
+        if ($(this).attr("id").indexOf("tempModal") > -1) {
+            return;
+        }
         $(this).find(".modal-header h3").html("正在加载...");
         $(this).find(".modal-body").html("正在加载...");
         $(this).removeData('bs.modal');

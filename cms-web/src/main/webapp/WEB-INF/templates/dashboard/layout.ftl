@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/datepicker.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/chosen.min.css"/>
+    <link rel="stylesheet" href="${ctx}/static/ace/dist/css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="${ctx}/static/ace/dist/css/prettify.min.css"/>
 
     <!-- page specific plugin styles -->
 
@@ -108,6 +110,7 @@
 <![endif]-->
 
 <script>var ctx = '${ctx}';</script>
+<script src="${ctx}/static/ace/dist/js/jquery-ui.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.bootstrap.min.js"></script>
 <script src="${ctx}/static/libs/artTemplate/template.js"></script>
@@ -119,6 +122,7 @@
 <script src="${ctx}/static/ace/dist/js/ace-extra.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace-elements.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/ace.min.js"></script>
+<script src="${ctx}/static/ace/dist/js/prettify.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.form.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.extends.js"></script>

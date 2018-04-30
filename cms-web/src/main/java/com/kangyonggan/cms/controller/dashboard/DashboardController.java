@@ -1,6 +1,7 @@
 package com.kangyonggan.cms.controller.dashboard;
 
 import com.kangyonggan.cms.controller.BaseController;
+import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.dto.ShiroUser;
 import com.kangyonggan.cms.model.Menu;
 import com.kangyonggan.cms.model.User;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -58,5 +60,37 @@ public class DashboardController extends BaseController {
         return getPathRoot() + "/index";
     }
 
+    /**
+     * 开发手册
+     *
+     * @return
+     */
+    @RequestMapping(value = "help", method = RequestMethod.GET)
+    @RequiresPermissions("DASHBOARD")
+    public String help() {
+        return getPathRoot() + "/help/index";
+    }
 
+    /**
+     * 模态框示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "help/create", method = RequestMethod.GET)
+    @RequiresPermissions("DASHBOARD")
+    public String create() {
+        return getPathRoot() + "/help/help-modal";
+    }
+
+    /**
+     * 模态框示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "help/save", method = RequestMethod.POST)
+    @RequiresPermissions("DASHBOARD")
+    @ResponseBody
+    public Response save() {
+        return Response.getSuccessResponse();
+    }
 }

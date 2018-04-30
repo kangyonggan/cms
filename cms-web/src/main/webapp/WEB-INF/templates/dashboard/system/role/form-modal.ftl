@@ -6,7 +6,7 @@
     <@c.form id="modal-form" action="${ctx}/dashboard/system/role/${isEdit?string('update', 'save')}">
     <input type="hidden" id="old-code" value="${role.code!''}"/>
         <@c.input name="code" value="${role.code!''}" label="角色代码" readonly=isEdit
-            required=!isEdit placeholder="格式参考:ROLE_ADMIN" valid={"isRoleCode": "true"}/>
+        required=!isEdit placeholder="格式参考:ROLE_ADMIN" valid={"isRoleCode": "true"}/>
         <@c.input name="name" value="${role.name!''}" label="角色名称" required=true valid={"rangelength": "[1, 32]"}/>
 
     </@c.form>
