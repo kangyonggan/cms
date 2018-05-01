@@ -5,7 +5,7 @@
 <div class="form-table-space"></div>
 <table id="${id}" data-toggle="table" data-url="${url}" data-pagination="${pagination?string}"
        data-side-pagination="server" data-undefined-text="${undefined_text}" data-striped="true"
-       data-form-id="${form_id}" data-click-to-select="true">
+       data-form-id="${form_id}" data-click-to-select="true" class="table-bordered">
     <thead>
     <tr>
         <#nested/>

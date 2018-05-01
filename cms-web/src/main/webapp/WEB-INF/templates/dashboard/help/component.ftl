@@ -17,4 +17,7 @@
     <@c.accordion_section title="Markdown编辑器">
         <#include "markdown.ftl"/>
     </@c.accordion_section>
+    <@c.accordion_section title="富文本编辑器">
+        <#include "kindeditor.ftl"/>
+    </@c.accordion_section>
 </@c.accordion>

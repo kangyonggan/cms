@@ -128,6 +128,8 @@
 <script src="${ctx}/static/libs/jquery/jquery.form.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.min.js"></script>
 <script src="${ctx}/static/libs/jquery/jquery.validate.extends.js"></script>
+<script src="${ctx}/static/libs/kindeditor/kindeditor-min.js"></script>
+<script src="${ctx}/static/libs/kindeditor/lang/zh_CN.js"></script>
 <script src="${ctx}/static/app/js/component.js"></script>
 <script src="${ctx}/static/app/js/app.js"></script>
 <@block name="app-script"/>

@@ -26,6 +26,15 @@ public class Response extends HashMap<String, Object> implements Serializable {
     }
 
     /**
+     * 获取一个响应
+     *
+     * @return
+     */
+    public static Response getResponse() {
+        return new Response();
+    }
+
+    /**
      * 获取一个成功的响应
      *
      * @return

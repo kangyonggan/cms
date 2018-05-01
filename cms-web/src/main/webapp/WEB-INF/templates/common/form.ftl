@@ -103,13 +103,13 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
 </#macro>
 
 <#--文本域-->
-<#macro textarea name label value="" inline=false class="" placeholder="" readonly=false type="" required=false valid={} height="200">
+<#macro textarea name label value="" inline=false class="" placeholder="" readonly=false type="" required=false valid={} rows=8>
     <div class="form-group <#if inline>col-lg-4 col-md-6 col-xs-12</#if>">
         <div class="app-label nowrap <#if inline>col-md-5 col-xs-12<#else>col-md-3</#if>">
             <label class="<#if required>required</#if>">${label}</label>
         </div>
         <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
-            <textarea id="${name}" name="${name}" class="form-control ${class}" style="height:${height}px;"
+            <textarea id="${name}" name="${name}" class="form-control ${class}" rows="${(type=='kindeditor')?string('${rows + 5}', '${rows}')}"
                       <#if readonly>readonly</#if>
                     <#list valid?keys as nm>
                         ${nm}="${valid[nm]}"
@@ -120,6 +120,10 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
     <#if type == "markdown">
         <script>
             $("#${name}").markdown({resize: 'vertical'});
+        </script>
+    <#elseif type == "kindeditor">
+        <script>
+            kedit('textarea[name="${name}"]');
         </script>
     </#if>
     </div>

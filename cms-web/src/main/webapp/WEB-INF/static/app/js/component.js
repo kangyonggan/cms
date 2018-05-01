@@ -284,3 +284,15 @@ function updatePreference(type, names, value, callback) {
         }
     });
 }
+
+/**
+ * 创建富文本框
+ *
+ * @param kedit
+ */
+function kedit(kedit){
+    return KindEditor.create(kedit,{
+        uploadJson: ctx + '/file/editor',
+        fileManagerJson: ctx + '/file/manager'
+    });
+}
