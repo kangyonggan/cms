@@ -9,7 +9,7 @@
 >
     <div class="space-6"></div>
     <#if token>
-        <input type="hidden" name="_token" value="${_token}"/>
+        <input type="hidden" name="_token" value="${_token!''}"/>
     </#if>
     <#nested />
 </form>

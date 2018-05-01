@@ -2,7 +2,7 @@
 <#assign modal_title="编辑偏好" />
 
 <@override name="modal-body">
-    <@c.form id="modal-form" action="${ctx}/dashboard/system/preference/update">
+    <@c.form id="modal-form" action="${ctx}/dashboard/system/preference/update" token=true>
         <@c.input name="type" value="${preference.type!''}" label="偏好类型" readonly=true/>
         <@c.input name="name" value="${preference.name!''}" label="偏好名称" readonly=true/>
         <@c.input name="value" value="${preference.value!''}" label="偏好的值" required=true valid={"rangelength": "[1, 256]"}/>

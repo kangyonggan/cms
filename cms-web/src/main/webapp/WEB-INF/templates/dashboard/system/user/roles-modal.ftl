@@ -1,7 +1,7 @@
 <#assign modal_title="设置角色" />
 
 <@override name="modal-body">
-<@c.form id="modal-form" action="${ctx}/dashboard/system/user/${username}/roles">
+<@c.form id="modal-form" action="${ctx}/dashboard/system/user/${username}/roles" token=true>
     <div class="control-group">
         <#list allRoles as role>
             <div class="checkbox">

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="${ctx}/static/libs/ztree/css/zTreeStyle.css"/>
 
 <@override name="modal-body">
-    <@c.form id="modal-form" action="${ctx}/dashboard/system/role/${roleCode}/menus">
+    <@c.form id="modal-form" action="${ctx}/dashboard/system/role/${roleCode}/menus" token=true>
             <input type="hidden" name="menus" id="menus"/>
             <div class="control-group">
                 <div>

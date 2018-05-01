@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
+import com.kangyonggan.cms.annotation.Token;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
@@ -67,6 +68,7 @@ public class DashboardSystemRoleController extends BaseController {
      */
     @RequestMapping(value = "create", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_ROLE")
+    @Token(key = "createRole")
     public String create(Model model) {
         model.addAttribute("role", new Role());
         return getPathFormModal();
@@ -82,6 +84,7 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_ROLE")
+    @Token(key = "createRole", type = Token.Type.CHECK)
     public Response save(@ModelAttribute("role") @Valid Role role, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -102,6 +105,7 @@ public class DashboardSystemRoleController extends BaseController {
      */
     @RequestMapping(value = "{code:[\\w_]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_ROLE")
+    @Token(key = "editRole")
     public String create(@PathVariable("code") String code, Model model) {
         model.addAttribute("role", roleService.findRoleByCode(code));
         return getPathFormModal();
@@ -117,6 +121,7 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_ROLE")
+    @Token(key = "editRole", type = Token.Type.CHECK)
     public Response update(@ModelAttribute("role") @Valid Role role, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -168,6 +173,7 @@ public class DashboardSystemRoleController extends BaseController {
      */
     @RequestMapping(value = "{code:[\\w_]+}/menus", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_ROLE")
+    @Token(key = "setMenus")
     public String menus(@PathVariable("code") String code, Model model) {
         Role role = roleService.findRoleByCode(code);
         List<Menu> roleMenus = menuService.findMenus4Role(role.getCode());
@@ -193,6 +199,7 @@ public class DashboardSystemRoleController extends BaseController {
     @RequestMapping(value = "{code:[\\w_]+}/menus", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_ROLE")
     @ResponseBody
+    @Token(key = "setMenus", type = Token.Type.CHECK)
     public Response menus(@PathVariable("code") String code, @RequestParam(value = "menus") String menus) {
         Role role = roleService.findRoleByCode(code);
 

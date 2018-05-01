@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
+import com.kangyonggan.cms.annotation.Token;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
@@ -62,7 +63,8 @@ public class DashboardSystemPreferenceController extends BaseController {
      */
     @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_PREFERENCE")
-    public String create(@PathVariable("id") Long id, Model model) {
+    @Token(key = "editPreference")
+    public String edit(@PathVariable("id") Long id, Model model) {
         model.addAttribute("preference", preferenceService.findPreferenceById(id));
         return getPathFormModal();
     }
@@ -77,6 +79,7 @@ public class DashboardSystemPreferenceController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_PREFERENCE")
+    @Token(key = "editPreference", type = Token.Type.CHECK)
     public Response update(@ModelAttribute("preference") @Valid Preference preference, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {

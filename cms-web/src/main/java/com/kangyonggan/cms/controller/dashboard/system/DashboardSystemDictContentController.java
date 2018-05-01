@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
+import com.kangyonggan.cms.annotation.Token;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
@@ -70,6 +71,7 @@ public class DashboardSystemDictContentController extends BaseController {
      */
     @RequestMapping(value = "create", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
+    @Token(key = "createDictContent")
     public String create(Model model) {
         List<DictionaryType> dictionaryTypes = dictionaryTypeService.findAllDictionaryTypes();
 
@@ -88,6 +90,7 @@ public class DashboardSystemDictContentController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
+    @Token(key = "createDictContent", type = Token.Type.CHECK)
     public Response save(@ModelAttribute("dictionary") @Valid Dictionary dictionary, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -108,6 +111,7 @@ public class DashboardSystemDictContentController extends BaseController {
      */
     @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
+    @Token(key = "editDictContent")
     public String create(@PathVariable("id") Long id, Model model) {
         List<DictionaryType> dictionaryTypes = dictionaryTypeService.findAllDictionaryTypes();
 
@@ -126,6 +130,7 @@ public class DashboardSystemDictContentController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_CONTENT")
+    @Token(key = "editDictContent", type = Token.Type.CHECK)
     public Response update(@ModelAttribute("dictionary") @Valid Dictionary dictionary, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {

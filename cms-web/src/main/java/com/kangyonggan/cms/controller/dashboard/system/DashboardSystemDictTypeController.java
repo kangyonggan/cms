@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
+import com.kangyonggan.cms.annotation.Token;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
@@ -61,6 +62,7 @@ public class DashboardSystemDictTypeController extends BaseController {
      */
     @RequestMapping(value = "create", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_TYPE")
+    @Token(key = "createDictType")
     public String create(Model model) {
         model.addAttribute("dictionaryType", new DictionaryType());
         return getPathFormModal();
@@ -76,6 +78,7 @@ public class DashboardSystemDictTypeController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_TYPE")
+    @Token(key = "createDictType", type = Token.Type.CHECK)
     public Response save(@ModelAttribute("dictionaryType") @Valid DictionaryType dictionaryType, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -96,6 +99,7 @@ public class DashboardSystemDictTypeController extends BaseController {
      */
     @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_DICT_TYPE")
+    @Token(key = "editDictType")
     public String create(@PathVariable("id") Long id, Model model) {
         model.addAttribute("dictionaryType", dictionaryTypeService.findDictionaryTypeById(id));
         return getPathFormModal();
@@ -111,6 +115,7 @@ public class DashboardSystemDictTypeController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_DICT_TYPE")
+    @Token(key = "editDictType", type = Token.Type.CHECK)
     public Response update(@ModelAttribute("dictionaryType") @Valid DictionaryType dictionaryType, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {

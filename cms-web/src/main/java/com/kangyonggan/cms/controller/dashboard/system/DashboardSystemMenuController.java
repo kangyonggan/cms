@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
+import com.kangyonggan.cms.annotation.Token;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Response;
 import com.kangyonggan.cms.model.Menu;
@@ -49,6 +50,7 @@ public class DashboardSystemMenuController extends BaseController {
      */
     @RequestMapping(value = "create", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_MENU")
+    @Token(key = "createMenu")
     public String create(@RequestParam(value = "pcode", defaultValue = "") String pcode,
                          Model model) {
         model.addAttribute("menu", new Menu());
@@ -66,6 +68,7 @@ public class DashboardSystemMenuController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_MENU")
     @ResponseBody
+    @Token(key = "createMenu", type = Token.Type.CHECK)
     public Response save(@ModelAttribute("menu") @Valid Menu menu, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -85,6 +88,7 @@ public class DashboardSystemMenuController extends BaseController {
      */
     @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_MENU")
+    @Token(key = "editMenu")
     public String edit(@PathVariable Long id, Model model) {
         Menu menu = menuService.findMenuById(id);
 
@@ -103,6 +107,7 @@ public class DashboardSystemMenuController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_MENU")
     @ResponseBody
+    @Token(key = "editMenu", type = Token.Type.CHECK)
     public Response update(@ModelAttribute("menu") @Valid Menu menu, BindingResult result) {
         Response response = Response.getSuccessResponse();
 

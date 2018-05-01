@@ -3,7 +3,7 @@
 <#assign modal_title="${isEdit?string('编辑字典', '添加新字典')}" />
 
 <@override name="modal-body">
-    <@c.form id="modal-form" action="${ctx}/dashboard/system/dict/content/${isEdit?string('update', 'save')}">
+    <@c.form id="modal-form" action="${ctx}/dashboard/system/dict/content/${isEdit?string('update', 'save')}" token=true>
     <#if isEdit>
         <input type="hidden" name="id" value="${dictionary.id}"/>
     </#if>
