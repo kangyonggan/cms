@@ -9,7 +9,6 @@ import com.kangyonggan.extra.core.model.EnumInfo;
  * @date 4/28/18
  */
 @Handle(type = Handle.Type.ENUM)
-//@Log4j2
 public class MyEnumHandle extends EnumHandle {
 
     private static MyEnumHandle instance = new MyEnumHandle();
