@@ -1,3 +1,6 @@
+<p>
+    下面给出常见组件的使用说明，但本项目部仅限于下面几种组件，每个组件都有很多参数，每个参数都有各自的用途。
+</p>
 <@c.accordion id="componment-accordion">
     <@c.accordion_section title="超链接" class="markdown">
         <#include "link.ftl"/>
@@ -8,19 +11,7 @@
     <@c.accordion_section title="表单">
         <#include "form.ftl"/>
     </@c.accordion_section>
-    <@c.accordion_section title="折叠筐">
-    折叠筐
-    </@c.accordion_section>
-    <@c.accordion_section title="选项卡">
-    选项卡
-    </@c.accordion_section>
     <@c.accordion_section title="表格">
-    表格
-    </@c.accordion_section>
-    <@c.accordion_section title="代码块">
-    表格
-    </@c.accordion_section>
-    <@c.accordion_section title="自定义">
-    自定义
+        <#include "table.ftl"/>
     </@c.accordion_section>
 </@c.accordion>
