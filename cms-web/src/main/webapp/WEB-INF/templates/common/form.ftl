@@ -24,7 +24,7 @@
     <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
         <input type="${type}" id="${name}" <#if readonly>readonly</#if> name="${name}"
         <#list valid?keys as nm>
-        ${nm}="${valid[nm]}"
+            ${nm}="${valid[nm]}"
         </#list>
         value="${value}" class="form-control ${class} <#if readonly>readonly</#if>"
         placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}" <#if required>required</#if>/>
@@ -56,7 +56,7 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
                 <#if map?? && map?size gt 0>
                     <#list map?keys as key>
                         <option value="${key}" <#if value==key>selected</#if>>
-                        ${map[key]}<#if show_code>[${key}]</#if>
+                            ${map[key]}<#if show_code>[${key}]</#if>
                         </option>
                     </#list>
                 </#if>
@@ -65,7 +65,7 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
                 <#if list?? && list?size gt 0>
                     <#list list as dict>
                         <option value="${dict.code}" <#if value==dict.code>selected</#if>>
-                        ${dict.value}<#if show_code>[${dict.code}]</#if>
+                            ${dict.value}<#if show_code>[${dict.code}]</#if>
                         </option>
                     </#list>
                 </#if>
@@ -102,3 +102,25 @@ readonly=false type="single" required=false enum_key="" dict_type="" show_code=t
     </#if>
 </#macro>
 
+<#--文本域-->
+<#macro textarea name label value="" inline=false class="" placeholder="" readonly=false type="" required=false valid={} height="200">
+    <div class="form-group <#if inline>col-lg-4 col-md-6 col-xs-12</#if>">
+        <div class="app-label nowrap <#if inline>col-md-5 col-xs-12<#else>col-md-3</#if>">
+            <label class="<#if required>required</#if>">${label}</label>
+        </div>
+        <div class="col-md-7 controls <#if inline>col-xs-12</#if>">
+            <textarea id="${name}" name="${name}" class="form-control ${class}" style="height:${height}px;"
+                      <#if readonly>readonly</#if>
+                    <#list valid?keys as nm>
+                        ${nm}="${valid[nm]}"
+                    </#list>
+                    placeholder="${(placeholder=='')?string('请输入${label}', placeholder)}"
+                      <#if required>required</#if>>${value}</textarea>
+        </div>
+    <#if type == "markdown">
+        <script>
+            $("#${name}").markdown({resize: 'vertical'});
+        </script>
+    </#if>
+    </div>
+</#macro>

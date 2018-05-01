@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="${ctx}/static/app/images/favicon.ico" type="image/x-icon">
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="${ctx}/static/libs/bootstrap-table/dist/bootstrap-table.min.css">
+    <#--<link rel="stylesheet" href="${ctx}/static/libs/bootstrap-table/dist/bootstrap-table.min.css">-->
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/datepicker.min.css"/>
@@ -28,8 +28,8 @@
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/ace-skins.min.css"/>
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="${ctx}/static/ace/dist/css/ace.min.css" class="ace-main-stylesheet"
-          id="main-ace-style"/>
+    <link rel="stylesheet" href="${ctx}/static/ace/dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link rel="stylesheet" href="${ctx}/static/libs/bootstrap/css/bootstrap-markdown.min.css"/>
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/ace-part2.min.css" class="ace-main-stylesheet"/>
@@ -116,6 +116,8 @@
 <script src="${ctx}/static/libs/artTemplate/template.js"></script>
 <script src="${ctx}/static/libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
 <script src="${ctx}/static/libs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="${ctx}/static/libs/bootstrap/js/marked.min.js"></script>
+<script src="${ctx}/static/libs/bootstrap/js/bootstrap-markdown.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/jquery.gritter.min.js"></script>
 <script src="${ctx}/static/ace/dist/js/chosen.jquery.min.js"></script>
