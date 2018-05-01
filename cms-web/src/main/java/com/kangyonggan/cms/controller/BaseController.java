@@ -2,7 +2,7 @@ package com.kangyonggan.cms.controller;
 
 import com.kangyonggan.cms.dto.Params;
 import com.kangyonggan.cms.dto.Query;
-import com.kangyonggan.cms.interceptor.RequestInterceptor;
+import com.kangyonggan.cms.interceptor.HandlerInterceptor;
 import com.kangyonggan.cms.util.StringUtil;
 import lombok.extern.log4j.Log4j2;
 
@@ -83,7 +83,7 @@ public class BaseController {
     protected Query getQuery(String name) {
         Query query = new Query();
         name += ".";
-        Map<String, String[]> parameterMap = RequestInterceptor.getRequest().getParameterMap();
+        Map<String, String[]> parameterMap = HandlerInterceptor.getRequest().getParameterMap();
         for (String key : parameterMap.keySet()) {
             if (key.startsWith(name)) {
                 String[] value = parameterMap.get(key);
@@ -105,7 +105,7 @@ public class BaseController {
      * @return
      */
     protected String getStringParam(String name) {
-        return RequestInterceptor.getRequest().getParameter(name);
+        return HandlerInterceptor.getRequest().getParameter(name);
     }
 
     /**
@@ -116,7 +116,7 @@ public class BaseController {
      * @return
      */
     protected String getStringParam(String name, String defaultValue) {
-        String param = RequestInterceptor.getRequest().getParameter(name);
+        String param = HandlerInterceptor.getRequest().getParameter(name);
         return param == null ? defaultValue : param;
     }
 
@@ -127,7 +127,7 @@ public class BaseController {
      * @return
      */
     protected int getIntegerParam(String name) {
-        return Integer.parseInt(RequestInterceptor.getRequest().getParameter(name));
+        return Integer.parseInt(HandlerInterceptor.getRequest().getParameter(name));
     }
 
     /**
@@ -139,7 +139,7 @@ public class BaseController {
      */
     protected int getIntegerParam(String name, int defaultValue) {
         try {
-            return Integer.parseInt(RequestInterceptor.getRequest().getParameter(name));
+            return Integer.parseInt(HandlerInterceptor.getRequest().getParameter(name));
         } catch (Exception e) {
             return defaultValue;
         }

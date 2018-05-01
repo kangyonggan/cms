@@ -1,5 +1,6 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
+import com.kangyonggan.cms.annotation.Token;
 import com.kangyonggan.cms.controller.BaseController;
 import com.kangyonggan.cms.dto.Page;
 import com.kangyonggan.cms.dto.Params;
@@ -69,6 +70,7 @@ public class DashboardSystemUserController extends BaseController {
      */
     @RequestMapping(value = "{username:[\\w]+}/edit", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_USER")
+    @Token(key = "editUser")
     public String edit(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.findUserByUsername(username));
         return getPathFormModal();
@@ -84,6 +86,7 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_USER")
+    @Token(key = "editUser", type = Token.Type.CHECK)
     public Response update(@ModelAttribute("user") @Valid User user, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -103,6 +106,7 @@ public class DashboardSystemUserController extends BaseController {
      */
     @RequestMapping(value = "create", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_USER")
+    @Token(key = "createUser")
     public String create(Model model) {
         model.addAttribute("user", new User());
         return getPathFormModal();
@@ -118,6 +122,7 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_USER")
+    @Token(key = "createUser", type = Token.Type.CHECK)
     public Response save(@ModelAttribute("user") @Valid User user, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -169,6 +174,7 @@ public class DashboardSystemUserController extends BaseController {
      */
     @RequestMapping(value = "{username:[\\w]+}/password", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_USER")
+    @Token(key = "editPassword")
     public String password(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.findUserByUsername(username));
         return getPathRoot() + "/password-modal";
@@ -184,6 +190,7 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "password", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("SYSTEM_USER")
+    @Token(key = "editPassword", type = Token.Type.CHECK)
     public Response password(@ModelAttribute("user") @Valid User user, BindingResult result) {
         Response response = Response.getSuccessResponse();
         if (!result.hasErrors()) {
@@ -204,6 +211,7 @@ public class DashboardSystemUserController extends BaseController {
      */
     @RequestMapping(value = "{username:[\\w]+}/roles", method = RequestMethod.GET)
     @RequiresPermissions("SYSTEM_USER")
+    @Token(key = "setRoles")
     public String roles(@PathVariable("username") String username, Model model) {
         List<Role> userRoles = roleService.findRolesByUsername(username);
         userRoles = Collections3.extractToList(userRoles, "code");
@@ -225,6 +233,7 @@ public class DashboardSystemUserController extends BaseController {
     @RequestMapping(value = "{username:[\\w]+}/roles", method = RequestMethod.POST)
     @RequiresPermissions("SYSTEM_USER")
     @ResponseBody
+    @Token(key = "setRoles", type = Token.Type.CHECK)
     public Response updateUserRoles(@PathVariable(value = "username") String username,
                                                @RequestParam(value = "roles", defaultValue = "") String roles) {
         User user = userService.findUserByUsername(username);

@@ -1,13 +1,16 @@
 <#--表单相关组件-->
 
 <#--表单-->
-<#macro form action="" id="form" action="" method="post" class="" multipart=false>
+<#macro form action="" id="form" action="" method="post" class="" multipart=false token=false>
 <form method="${method}" class="form-horizontal ${class}"
       <#if multipart>enctype="multipart/form-data"</#if>
       <#if action!=''>action="${action}"</#if>
       <#if id!=''>id="${id}"</#if>
 >
     <div class="space-6"></div>
+    <#if token>
+        <input type="hidden" name="_token" value="${_token}"/>
+    </#if>
     <#nested />
 </form>
 </#macro>
