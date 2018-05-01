@@ -2,6 +2,7 @@ package com.kangyonggan.cms.interceptor;
 
 import com.kangyonggan.cms.annotation.Token;
 import com.kangyonggan.cms.util.RandomUtil;
+import com.kangyonggan.cms.util.ShiroUtils;
 import com.kangyonggan.cms.util.StringUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.method.HandlerMethod;
@@ -49,7 +50,7 @@ public class HandlerInterceptor extends HandlerInterceptorAdapter {
                 String random = RandomUtil.getRandomString();
                 modelAndView.addObject("_token", random);
                 request.getSession().setAttribute(token.key(), random);
-                log.info("生成一个token，key={}, value={}", token.key(), random);
+                log.info("{}生成一个token，key={}, value={}", ShiroUtils.getShiroUsername(), token.key(), random);
             }
         }
 
@@ -82,7 +83,7 @@ public class HandlerInterceptor extends HandlerInterceptorAdapter {
         try {
             String random = request.getParameter("_token");
             String sessionRandom = (String) request.getSession().getAttribute(token.key());
-            log.info("校验是否重复提交，key={}, random={}, sessionRandom={}", token.key(), random, sessionRandom);
+            log.info("{}校验是否重复提交，key={}, random={}, sessionRandom={}", ShiroUtils.getShiroUsername(), token.key(), random, sessionRandom);
             if (StringUtil.hasEmpty(random, sessionRandom)) {
                 return true;
             }
