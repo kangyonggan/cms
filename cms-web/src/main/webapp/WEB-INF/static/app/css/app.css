@@ -45,7 +45,7 @@
 
 .pagination-detail {
     border: 1px solid #d4dfe3;
-    padding: 0 5px;
+    padding: 5px;
 }
 
 input[readonly].readonly {
@@ -60,6 +60,10 @@ tr.no-records-found td {
 .fixed-table-body {
     overflow-x: visible !important;
     overflow-y: visible !important;
+}
+
+.bootstrap-table .pagination {
+    margin: 0;
 }
 
 /*skin*/
@@ -80,22 +84,22 @@ tr.no-records-found td {
 }
 
 .skin-2 .btn-skin {
-    background-color: #d6487e!important;
+    background-color: #d6487e !important;
     border-color: #d6487e;
 }
 
 .skin-2 .btn-skin:hover {
-    background-color: #b73766!important;
+    background-color: #b73766 !important;
     border-color: #d6487e;
 }
 
 .skin-1 .btn-skin, .no-skin .btn-skin {
-    background-color: #428bca!important;
+    background-color: #428bca !important;
     border-color: #428bca;
 }
 
 .skin-1 .btn-skin:hover, .no-skin .btn-skin:hover {
-    background-color: #1b6aaa!important;
+    background-color: #1b6aaa !important;
     border-color: #428bca;
 }
 
