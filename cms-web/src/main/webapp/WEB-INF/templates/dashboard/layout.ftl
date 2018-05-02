@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="${ctx}/static/app/images/favicon.ico" type="image/x-icon">
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/bootstrap.min.css"/>
-    <#--<link rel="stylesheet" href="${ctx}/static/libs/bootstrap-table/dist/bootstrap-table.min.css">-->
+    <link rel="stylesheet" href="${ctx}/static/libs/bootstrap-table/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/jquery.gritter.min.css"/>
     <link rel="stylesheet" href="${ctx}/static/ace/dist/css/datepicker.min.css"/>

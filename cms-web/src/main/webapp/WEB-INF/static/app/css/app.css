@@ -45,7 +45,12 @@
 
 .pagination-detail {
     border: 1px solid #d4dfe3;
-    padding: 5px;
+    padding: 0 5px;
+}
+
+.fixed-table-body .fixed-table-loading {
+    padding-top: 30px;
+    color: red;
 }
 
 input[readonly].readonly {
@@ -60,10 +65,6 @@ tr.no-records-found td {
 .fixed-table-body {
     overflow-x: visible !important;
     overflow-y: visible !important;
-}
-
-.bootstrap-table .pagination {
-    margin: 0;
 }
 
 /*skin*/
