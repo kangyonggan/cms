@@ -1,7 +1,7 @@
 package com.kangyonggan.cms.controller.dashboard;
 
-import com.kangyonggan.cms.controller.BaseController;
-import com.kangyonggan.cms.dto.Response;
+import com.kangyonggan.base.BaseController;
+import com.kangyonggan.base.dto.Response;
 import com.kangyonggan.cms.service.PreferenceService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

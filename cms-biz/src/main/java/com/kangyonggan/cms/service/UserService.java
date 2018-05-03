@@ -1,7 +1,7 @@
 package com.kangyonggan.cms.service;
 
 
-import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.base.dto.Params;
 import com.kangyonggan.cms.model.User;
 
 import java.util.List;

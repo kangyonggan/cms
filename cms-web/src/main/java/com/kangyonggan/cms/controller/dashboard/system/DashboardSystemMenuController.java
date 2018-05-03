@@ -1,8 +1,8 @@
 package com.kangyonggan.cms.controller.dashboard.system;
 
-import com.kangyonggan.cms.annotation.Token;
-import com.kangyonggan.cms.controller.BaseController;
-import com.kangyonggan.cms.dto.Response;
+import com.kangyonggan.base.annotation.Token;
+import com.kangyonggan.base.BaseController;
+import com.kangyonggan.base.dto.Response;
 import com.kangyonggan.cms.model.Menu;
 import com.kangyonggan.cms.service.MenuService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

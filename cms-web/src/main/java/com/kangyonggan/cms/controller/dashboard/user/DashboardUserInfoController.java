@@ -1,15 +1,16 @@
 package com.kangyonggan.cms.controller.dashboard.user;
 
-import com.kangyonggan.cms.controller.BaseController;
-import com.kangyonggan.cms.dto.Response;
+import com.kangyonggan.base.BaseController;
+import com.kangyonggan.base.dto.Response;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.UserService;
-import com.kangyonggan.cms.util.FileUpload;
 import com.kangyonggan.cms.util.ShiroUtils;
+import com.kangyonggan.base.util.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,12 @@ public class DashboardUserInfoController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Value("${cms.file.dir}")
+    private String fileDir;
+
+    @Value("${cms.upload.dir}")
+    private String uploadDir;
 
     /**
      * 基本信息
@@ -63,7 +70,7 @@ public class DashboardUserInfoController extends BaseController {
             user.setUsername(ShiroUtils.getShiroUsername());
 
             if (file != null && !file.isEmpty()) {
-                String avatarPath = FileUpload.upload(file, "AVATAR");
+                String avatarPath = FileUpload.upload(fileDir, uploadDir, file, "AVATAR");
                 user.setAvatar(avatarPath);
             }
 

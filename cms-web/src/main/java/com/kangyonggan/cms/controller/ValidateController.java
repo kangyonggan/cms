@@ -1,4 +1,4 @@
-package com.kangyonggan.cms.controller.web;
+package com.kangyonggan.cms.controller;
 
 import com.kangyonggan.cms.service.*;
 import org.springframework.beans.factory.annotation.Autowired;

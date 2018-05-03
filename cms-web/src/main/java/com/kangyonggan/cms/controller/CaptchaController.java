@@ -1,4 +1,4 @@
-package com.kangyonggan.cms.controller.web;
+package com.kangyonggan.cms.controller;
 
 import com.kangyonggan.cms.constants.AppConstants;
 import lombok.extern.log4j.Log4j2;

@@ -1,7 +1,7 @@
 package com.kangyonggan.cms.controller.dashboard;
 
-import com.kangyonggan.cms.controller.BaseController;
-import com.kangyonggan.cms.dto.Response;
+import com.kangyonggan.base.BaseController;
+import com.kangyonggan.base.dto.Response;
 import com.kangyonggan.cms.dto.ShiroUser;
 import com.kangyonggan.cms.model.Menu;
 import com.kangyonggan.cms.model.User;

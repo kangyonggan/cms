@@ -1,8 +1,8 @@
 package com.kangyonggan.cms.controller.web;
 
 import com.kangyonggan.cms.constants.AppConstants;
-import com.kangyonggan.cms.controller.BaseController;
-import com.kangyonggan.cms.dto.Response;
+import com.kangyonggan.base.BaseController;
+import com.kangyonggan.base.dto.Response;
 import com.kangyonggan.cms.model.User;
 import com.kangyonggan.cms.service.LoginLogService;
 import com.kangyonggan.cms.util.IpUtil;

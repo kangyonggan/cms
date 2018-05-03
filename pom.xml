@@ -51,14 +51,15 @@
         <mysql.version>5.1.34</mysql.version>
 
         <!--j2ee-->
-        <freemarker.version>1.2.0</freemarker.version>
         <servlet.version>3.1.0</servlet.version>
         <hibernate-validator.version>5.2.3.Final</hibernate-validator.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
 
         <!--Shire-->
         <shiro.version>1.2.4</shiro.version>
-        <shiro.tags.version>1.2.0</shiro.tags.version>
+
+        <!--kangyonggan-->
+        <kangyonggan.version>1.2.0</kangyonggan.version>
 
         <!--Commons-->
         <commons-lang3.version>3.3.2</commons-lang3.version>
@@ -271,7 +272,12 @@
             <dependency>
                 <groupId>com.kangyonggan</groupId>
                 <artifactId>freemarker</artifactId>
-                <version>${freemarker.version}</version>
+                <version>${kangyonggan.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kangyonggan</groupId>
+                <artifactId>base</artifactId>
+                <version>${kangyonggan.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -319,7 +325,7 @@
             <dependency>
                 <groupId>com.kangyonggan</groupId>
                 <artifactId>shiro</artifactId>
-                <version>${shiro.tags.version}</version>
+                <version>${kangyonggan.version}</version>
             </dependency>
 
             <!--Commons-->

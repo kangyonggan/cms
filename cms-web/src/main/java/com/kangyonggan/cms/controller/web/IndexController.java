@@ -1,6 +1,6 @@
 package com.kangyonggan.cms.controller.web;
 
-import com.kangyonggan.cms.controller.BaseController;
+import com.kangyonggan.base.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

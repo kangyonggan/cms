@@ -1,8 +1,8 @@
 package com.kangyonggan.cms.controller.dashboard.monitor;
 
-import com.kangyonggan.cms.controller.BaseController;
-import com.kangyonggan.cms.dto.Page;
-import com.kangyonggan.cms.dto.Params;
+import com.kangyonggan.base.BaseController;
+import com.kangyonggan.base.dto.Page;
+import com.kangyonggan.base.dto.Params;
 import com.kangyonggan.cms.model.Monitor;
 import com.kangyonggan.cms.service.MonitorService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
