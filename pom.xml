@@ -58,7 +58,7 @@
 
         <!--Shire-->
         <shiro.version>1.2.4</shiro.version>
-        <shiro.tags.version>1.0.0</shiro.tags.version>
+        <shiro.tags.version>1.2.0</shiro.tags.version>
 
         <!--Commons-->
         <commons-lang3.version>3.3.2</commons-lang3.version>
