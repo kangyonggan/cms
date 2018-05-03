@@ -33,11 +33,17 @@
                 <filtering>true</filtering>
                 <excludes>
                     <exclude>env/**</exclude>
+                    <exclude>templates/**</exclude>
                 </excludes>
             </resource>
             <resource>
                 <directory>src/main/resources/env/${env.active}</directory>
                 <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources/templates</directory>
+                <filtering>false</filtering>
+                <targetPath>templates</targetPath>
             </resource>
         </resources>
     </build>

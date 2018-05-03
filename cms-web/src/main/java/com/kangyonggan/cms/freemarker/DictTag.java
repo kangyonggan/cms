@@ -2,10 +2,10 @@ package com.kangyonggan.cms.freemarker;
 
 import com.kangyonggan.cms.model.Dictionary;
 import com.kangyonggan.cms.service.DictionaryService;
+import com.kangyonggan.freemarker.AbstractFunctionTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**

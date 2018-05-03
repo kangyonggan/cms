@@ -2,6 +2,7 @@ package com.kangyonggan.cms.freemarker;
 
 import com.kangyonggan.cms.constants.MyEnumHandle;
 import com.kangyonggan.extra.core.model.EnumInfo;
+import com.kangyonggan.freemarker.AbstractFunctionTag;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;

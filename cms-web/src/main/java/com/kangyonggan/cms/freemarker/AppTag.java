@@ -3,6 +3,7 @@ package com.kangyonggan.cms.freemarker;
 import com.kangyonggan.cms.model.Preference;
 import com.kangyonggan.cms.service.PreferenceService;
 import com.kangyonggan.cms.util.ShiroUtils;
+import com.kangyonggan.freemarker.AbstractFunctionTag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
